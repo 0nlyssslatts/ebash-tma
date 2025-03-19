@@ -21,22 +21,22 @@ export default function Home() {
         </TextLight>
         <div className="flex flex-col gap-2 mt-4">
           <Link href="/guide">
-            <Button text="Гайд новичка" />
+            <Button>Гайд новичка</Button>
           </Link>
           <Link href="/meets">
-            <Button text="Календарь" />
+            <Button>Календарь</Button>
           </Link>
           <Link href="/chats">
-            <Button text="Чаты" />
+            <Button>Чаты</Button>
           </Link>
           <Link href="/moves">
-            <Button text="Регулярные активности" />
+            <Button>Регулярные активности</Button>
           </Link>
           <Link href="/bonus">
-            <Button text="Ништяки и материалы" />
+            <Button>Ништяки и материалы</Button>
           </Link>
           <Link href="/help">
-            <Button text="Написать куратору" />
+            <Button>Написать куратору</Button>
           </Link>
         </div>
       </DarkSection>
