@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/Button';
 import { DarkSection } from '@/components/ui/DarkSection';
@@ -11,6 +11,16 @@ import { Text } from '@/components/ui/Text';
 import { TextLight } from '@/components/ui/TextLight';
 
 export default function Home() {
+  if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+    const tg = window.Telegram.WebApp;
+    try {
+      tg.requestFullscreen();
+    } catch (error) {
+      console.log(error);
+      tg.expand();
+    }
+  }
+
   const buttons = [
     { href: '/guide', text: 'Гайд новичка' },
     { href: '/meets', text: 'Календарь' },
