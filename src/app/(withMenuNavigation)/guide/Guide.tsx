@@ -27,7 +27,7 @@ export default function Guide() {
       <Section>
         <Text>Чек-лист EБАШера</Text>
         <TextLighter>пункты кликабельные, нажимай на них</TextLighter>
-        <List className='text-base mt-3' listArray={check} />
+        <List className='mt-3' listArray={check} />
       </Section>
     </Page>
   );
