@@ -10,7 +10,7 @@ import { TextLight } from '@/components/ui/TextLight';
 import { TextLighter } from '@/components/ui/TextLighter';
 
 export default function Guide() {
-  const check = ['f', 'wef', 'ewgr', 'wegwg', 'wegweg'];
+  const check = ['ознакомиться со словарем подписки', 'обратиться к кому-то из чата по имени и отчеству', 'написать #интро в общий чат', 'посмотреть все активности ЕБАШ', 'посмотреть все активности ЕБАШ'];
 
   return (
     <Page>
@@ -27,7 +27,7 @@ export default function Guide() {
       <Section>
         <Text>Чек-лист EБАШера</Text>
         <TextLighter>пункты кликабельные, нажимай на них</TextLighter>
-        <List listArray={check} />
+        <List className='text-base mt-3' listArray={check} />
       </Section>
     </Page>
   );
