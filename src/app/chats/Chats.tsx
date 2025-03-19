@@ -1,13 +1,16 @@
 'use client';
 
-import { Header } from "@/components/ui/Header";
+import { DarkSection } from '@/components/ui/DarkSection';
+import { Header } from '@/components/ui/Header';
+import { Page } from '@/components/ui/Page';
 
 export default function Chats() {
-    return (
-        <div className="page">
-            <div className="flex flex-col justify-center items-center max-w-2xl mx-auto p-4">
-            <Header text="CHATS"/>
-            </div>
-        </div>
-    );
+  return (
+    <Page>
+      <Header text="CHATS" />
+      <DarkSection>
+        <p className="text-lg">Для вступления тыкни на карточку</p>
+      </DarkSection>
+    </Page>
+  );
 }
