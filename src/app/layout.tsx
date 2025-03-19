@@ -34,11 +34,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <Script src="https://telegram.org/js/telegram-web-app.js?56" strategy="beforeInteractive"/>
       </head>
-      <body className={`${blackout.variable} font-sans`}>{children}</body>
+      <body className={`${blackout.variable} ${montserrat.variable} font-sans`}>{children}</body>
     </html>
   );
 }
