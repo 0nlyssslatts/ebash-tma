@@ -13,7 +13,11 @@ module.exports = {
       },
       colors: {
         background: '#232323',
-        secondary: '#1C1C1C'
+        secondary: '#1C1C1C',
+        text: '#FFFFFF',
+        textgreen: '#96FFCE',
+        backgroundgreen: '#96FFCE0D',
+
       }
     }
   },
