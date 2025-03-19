@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   description: 'Гайд для новичков',
 };
 
-export default async function HomePage() {
+export default async function GuidePage() {
   return <Guide />;
 }

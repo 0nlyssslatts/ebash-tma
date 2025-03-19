@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 body {
-    color: #fff;
-    background-color: #232323;
+  color: #fff;
+  background-color: #232323;
 }
 
 .page {
-    height: full;
-    width: full;
+  height: full;
+  width: full;
+}
+p {
+  text-align: justify;
 }
