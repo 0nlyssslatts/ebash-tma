@@ -26,9 +26,6 @@ importers:
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
-      prettier:
-        specifier: ^3.5.3
-        version: 3.5.3
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -63,6 +60,9 @@ importers:
       eslint-config-next:
         specifier: 15.2.2
         version: 15.2.2(eslint@9.22.0(jiti@2.4.2))(typescript@5.8.2)
+      prettier:
+        specifier: ^3.5.3
+        version: 3.5.3
       typescript:
         specifier: ^5
         version: 5.8.2
