@@ -10,8 +10,11 @@ module.exports = {
     extend: {
       fontFamily: {
         blackout: ['var(--font-blackout)']
+      },
+      colors: {
+        background: '#232323',
+        secondary: '#1C1C1C'
       }
-  
     }
   },
   plugins: []

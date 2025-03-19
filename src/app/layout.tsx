@@ -10,10 +10,11 @@ export const metadata: Metadata = {
 const blackout = localFont({
   src: [
     {
-      path: '../../public/fonts/Blackout Sunrise.ttf'
+      path: '../../public/fonts/Blackout Sunrise.ttf',
     },
   ],
-  variable: '--font-blackout'
+  variable: '--font-blackout',
+  display: 'swap',
 })
 
 export default function RootLayout({
