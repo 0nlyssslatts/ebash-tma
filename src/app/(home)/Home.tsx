@@ -1,12 +1,13 @@
 'use client';
 
 import { Button } from '@/components/ui/Button';
+import { Header } from "@/components/ui/Header";
 
 export default function Home() {
   return (
     <div className="page">
       <div className="flex flex-col justify-center items-center max-w-2xl mx-auto p-4">
-        <h1 className="font-blackout text-8xl mt-5">EBASH</h1>
+        <Header text='EBASH' />
         <div className="bg-secondary rounded px-5 py-3">
           <p className="text-lg">Здарова, че бакланишь?</p>
           <p className="text-sm mt-2">
