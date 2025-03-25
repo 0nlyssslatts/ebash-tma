@@ -1,19 +1,49 @@
 'use client';
 
 import { ChatCard } from '@/components/ChatCard';
+import { Page } from '@/components/Page';
 import { DarkSection } from '@/components/ui/DarkSection';
-import { Header } from '@/components/ui/Header';
-import { Page } from '@/components/ui/Page';
-import { Text } from '@/components/ui/Text';
+import { Header } from '@/components/ui/Texts/Header';
+import { Text } from '@/components/ui/Texts/Text';
 
 export default function Chats() {
   const chats = [
-    { id: 1, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
-    { id: 2, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
-    { id: 3, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
-    { id: 4, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
-    { id: 5, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
-    { id: 6, title: '9LIST', text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.', href: '#' },
+    {
+      id: 1,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
+    {
+      id: 2,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
+    {
+      id: 3,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
+    {
+      id: 4,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
+    {
+      id: 5,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
+    {
+      id: 6,
+      title: '9LIST',
+      text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+      href: '#',
+    },
   ];
 
   return (

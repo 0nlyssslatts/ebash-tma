@@ -3,12 +3,12 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import { Button } from '@/components/ui/Button';
+import { Page } from '@/components/Page';
+import { Button } from '@/components/ui/Buttons/Button';
 import { DarkSection } from '@/components/ui/DarkSection';
-import { Header } from '@/components/ui/Header';
-import { Page } from '@/components/ui/Page';
-import { Text } from '@/components/ui/Text';
-import { TextLight } from '@/components/ui/TextLight';
+import { Header } from '@/components/ui/Texts/Header';
+import { Text } from '@/components/ui/Texts/Text';
+import { TextLight } from '@/components/ui/Texts/TextLight';
 
 export default function Home() {
   if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
