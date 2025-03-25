@@ -23,7 +23,7 @@ export default function Chats() {
         <Text>Для вступления тыкни на карточку</Text>
       </DarkSection>
       <Text className="self-start my-5">Чаты</Text>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-3">
         {chats.map((chat, index) => (
           <ChatCard key={chat.id} href={chat.href} title={chat.title} text={chat.text} index={index} />
         ))}
