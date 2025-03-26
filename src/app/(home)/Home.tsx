@@ -1,7 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { groq } from 'next-sanity';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
@@ -10,37 +12,64 @@ import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 
-export default function Home() {
-  if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-    const tg = window.Telegram.WebApp;
-    try {
-      tg.requestFullscreen();
-    } catch (error) {
-      console.log(error);
-      tg.expand();
-    }
-  }
+import { client } from '@/sanity/client';
 
-  const buttons = [
-    { href: '/guide', text: 'Гайд новичка' },
-    { href: '/meets', text: 'Календарь' },
-    { href: '/chats', text: 'Чаты' },
-    { href: '/moves', text: 'Регулярные активности' },
-    { href: '/bonus', text: 'Ништяки и материалы' },
-    { href: '/help', text: 'Написать куратору' },
-  ];
+interface HomePageData {
+  header: string;
+  greeting: string;
+  description: string;
+  buttons: {
+    text: string;
+    href: string;
+  }[];
+}
+
+export default function Home() {
+  const [data, setData] = useState<HomePageData | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      try {
+        tg.requestFullscreen();
+      } catch (error) {
+        console.log(error);
+        tg.expand();
+      }
+    }
+
+    const loadData = async () => {
+      try {
+        const result = await client.fetch(groq`*[_type == "homePage"][0]{
+          header, greeting, description,
+          "buttons": buttons[] { text, href }
+        }`);
+        setData(result);
+      } catch (error) {
+        console.error('Sanity error:', error);
+      }
+    };
+    loadData();
+  }, []);
+
+  if (!data) {
+    return (
+      <Page>
+        <div className="flex justify-center items-center h-screen">
+          <p>Загрузка...</p>
+        </div>
+      </Page>
+    );
+  }
 
   return (
     <Page>
-      <Header>EBASH</Header>
+      <Header>{data.header}</Header>
       <DarkSection>
-        <Text>Здарова, че бакланишь?</Text>
-        <TextLight>
-          Мы сообщество тех, кто стремится к саморазвитию, ответственности за свою жизнь и осознанному подходу к ней. Не
-          просто работаем, а вкладываемся на полную во все сферы жизни: от работы и учёбы до отдыха и личного роста
-        </TextLight>
+        <Text>{data.greeting}</Text>
+        <TextLight>{data.description}</TextLight>
         <div className="flex flex-col gap-2 mt-4">
-          {buttons.map((button, index) => (
+          {data.buttons.map((button, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
