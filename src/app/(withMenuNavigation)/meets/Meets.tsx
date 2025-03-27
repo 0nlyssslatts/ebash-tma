@@ -26,7 +26,16 @@ interface MeetsPageData {
   }[];
   gallery: {
     asset: {
+      _id: string;
       _ref: string;
+      url: string;
+      metadata: {
+        dimensions: {
+          width: number;
+          height: number;
+          aspectRatio: number;
+        };
+      };
     };
     alt: string;
   }[];
@@ -42,8 +51,6 @@ export default function Meets({ data }: { data: MeetsPageData }) {
       </Page>
     );
   }
-
-  // console.log('Gallery data:', data.gallery);
 
   return (
     <Page>
@@ -88,12 +95,7 @@ export default function Meets({ data }: { data: MeetsPageData }) {
       </div>
 
       <div className="flex gap-4 p-4 flex-wrap w-full">
-        {/* {data.gallery?.map((image, index) => (
-          <CustomImage key={index} src={image.asset._ref} description={image.alt} />
-        ))} */}
-        <CustomImage src="images/image 6.png" description="Описание изображения" />
-        <CustomImage src="images/image 7.png" description="Описание изображения" />
-        <CustomImage src="images/image 8.png" description="Описание изображения" />
+        {data.gallery?.map((image, index) => <CustomImage key={index} src={image.asset.url} description={image.alt} />)}
       </div>
     </Page>
   );

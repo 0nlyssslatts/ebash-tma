@@ -30,7 +30,15 @@ async function getMeetsPageData() {
       },
       gallery[] {
         asset->{
-          _ref
+          _id,
+          url,
+          metadata {
+            dimensions {
+              width,
+              height,
+              aspectRatio
+            }
+          }
         },
         alt
       }
