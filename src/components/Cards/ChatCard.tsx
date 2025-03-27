@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import { TextLight } from './ui/Texts/TextLight';
+import { TextLight } from '../ui/Texts/TextLight';
 
 const colors = ['bg-red-500', 'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-pink-500'];
 

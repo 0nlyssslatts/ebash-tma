@@ -14,3 +14,11 @@ body {
 p {
   text-align: justify;
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE и Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari и Opera */
+}
