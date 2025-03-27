@@ -10,6 +10,7 @@ import { DarkSection } from '@/components/ui/DarkSection';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
+import { MainLoader } from '@/components/ui/MainLoader';
 
 interface HomePageData {
   header: string;
@@ -35,13 +36,7 @@ export default function Home({ data }: { data: HomePageData }) {
   }, []);
 
   if (!data) {
-    return (
-      <Page>
-        <div className="flex justify-center items-center h-screen">
-          <p>Загрузка...</p>
-        </div>
-      </Page>
-    );
+    return <MainLoader />;
   }
 
   return (

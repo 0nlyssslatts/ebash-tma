@@ -7,6 +7,7 @@ import { MeetCard } from '@/components/Cards/MeetCard';
 import { Page } from '@/components/Page';
 import { SmallButton } from '@/components/ui/Buttons/SmallButton';
 import { CustomImage } from '@/components/ui/CustomImage';
+import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 
 interface MeetsPageData {
@@ -43,13 +44,7 @@ interface MeetsPageData {
 
 export default function Meets({ data }: { data: MeetsPageData }) {
   if (!data) {
-    return (
-      <Page>
-        <div className="flex justify-center items-center h-screen">
-          <p>Загрузка...</p>
-        </div>
-      </Page>
-    );
+    return <MainLoader />;
   }
 
   return (
