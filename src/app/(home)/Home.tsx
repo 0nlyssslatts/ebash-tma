@@ -1,9 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { groq } from 'next-sanity';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
@@ -11,8 +10,6 @@ import { DarkSection } from '@/components/ui/DarkSection';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
-
-import { client } from '@/sanity/client';
 
 interface HomePageData {
   header: string;
@@ -24,9 +21,7 @@ interface HomePageData {
   }[];
 }
 
-export default function Home() {
-  const [data, setData] = useState<HomePageData | null>(null);
-
+export default function Home({ data }: { data: HomePageData }) {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -37,19 +32,6 @@ export default function Home() {
         tg.expand();
       }
     }
-
-    const loadData = async () => {
-      try {
-        const result = await client.fetch(groq`*[_type == "homePage"][0]{
-          header, greeting, description,
-          "buttons": buttons[] { text, href }
-        }`);
-        setData(result);
-      } catch (error) {
-        console.error('Sanity error:', error);
-      }
-    };
-    loadData();
   }, []);
 
   if (!data) {
