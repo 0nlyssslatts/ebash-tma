@@ -49,6 +49,7 @@ export default function Home() {
         console.error('Sanity error:', error);
       }
     };
+
     loadData();
   }, []);
 
