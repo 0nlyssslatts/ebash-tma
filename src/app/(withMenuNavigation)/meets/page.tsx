@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Meets from './Meets';
 
 export const metadata: Metadata = {
-  title: 'Втречи',
+  title: 'Встречи',
   description: 'Расписание встреч',
 };
 
