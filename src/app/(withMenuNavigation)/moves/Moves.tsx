@@ -1,7 +1,7 @@
 'use client';
 
-import { Header } from '@/components/ui/Header';
-import { Page } from '@/components/ui/Page';
+import { Page } from '@/components/Page';
+import { Header } from '@/components/ui/Texts/Header';
 
 export default function Meets() {
   return (

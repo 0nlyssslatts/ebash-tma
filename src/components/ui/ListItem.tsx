@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import { TextLight } from './TextLight';
+import { TextLight } from './Texts/TextLight';
 
 export function ListItem({ item, index }: { item: string; index: number }) {
   return (
