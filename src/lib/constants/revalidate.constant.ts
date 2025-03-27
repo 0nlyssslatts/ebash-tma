@@ -1,1 +1,0 @@
-export const REVALIDATE = 43200;

@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { groq } from 'next-sanity';
 
-import { REVALIDATE } from '@/lib/constants/revalidate.constant';
-
 import Home from './Home';
 import { client } from '@/sanity/client';
 
@@ -11,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Главная страница',
 };
 
-export const revalidate = REVALIDATE;
+export const revalidate = 43200;
 
 async function getHomePageData() {
   return await client.fetch(groq`*[_type == "homePage"][0]{
