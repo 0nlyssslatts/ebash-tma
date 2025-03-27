@@ -7,20 +7,12 @@ import { useEffect } from 'react';
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { DarkSection } from '@/components/ui/DarkSection';
+import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
-import { MainLoader } from '@/components/ui/MainLoader';
 
-interface HomePageData {
-  header: string;
-  greeting: string;
-  description: string;
-  buttons: {
-    text: string;
-    href: string;
-  }[];
-}
+import { HomePageData } from '@/lib/types/home';
 
 export default function Home({ data }: { data: HomePageData }) {
   useEffect(() => {
