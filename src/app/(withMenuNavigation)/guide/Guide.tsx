@@ -2,7 +2,6 @@
 
 import { Page } from '@/components/Page';
 import { ClosingSection } from '@/components/ui/ClosingSection';
-import { DarkSection } from '@/components/ui/DarkSection';
 import { List } from '@/components/ui/List';
 import { Section } from '@/components/ui/Section';
 import { Header } from '@/components/ui/Texts/Header';
@@ -35,27 +34,6 @@ export default function Guide() {
         <TextLighter>пункты кликабельные, нажимай на них</TextLighter>
         <List className="mt-3" listArray={check} />
       </Section>
-      <ClosingSection header="Наши ценности">
-        {' '}
-        <TextLight>
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст текст текст текст текст текст текст текст текст
-        </TextLight>
-      </ClosingSection>
-      <ClosingSection header="Наши ценности">
-        {' '}
-        <TextLight>
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст текст текст текст текст текст текст текст текст
-        </TextLight>
-      </ClosingSection>
-      <ClosingSection header="Наши ценности">
-        {' '}
-        <TextLight>
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст текст текст текст текст текст текст текст текст
-        </TextLight>
-      </ClosingSection>
       <ClosingSection header="Наши ценности">
         {' '}
         <TextLight>
