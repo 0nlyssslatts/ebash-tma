@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { ChatCard } from '@/components/Cards/ChatCard';
 import { Page } from '@/components/Page';
 import { DarkSection } from '@/components/ui/DarkSection';
+import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 
@@ -33,13 +34,7 @@ export default function Chats(data: ChatsPageData) {
   }, []);
 
   if (!data) {
-    return (
-      <Page>
-        <div className="flex justify-center items-center h-screen">
-          <p>Загрузка...</p>
-        </div>
-      </Page>
-    );
+    return <MainLoader />;
   }
 
   return (
