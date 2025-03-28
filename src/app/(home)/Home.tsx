@@ -1,32 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { groq } from 'next-sanity';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { DarkSection } from '@/components/ui/DarkSection';
+import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 
-import { client } from '@/sanity/client';
+import { HomePageData } from '@/lib/types/home';
 
-interface HomePageData {
-  header: string;
-  greeting: string;
-  description: string;
-  buttons: {
-    text: string;
-    href: string;
-  }[];
-}
-
-export default function Home() {
-  const [data, setData] = useState<HomePageData | null>(null);
-
+export default function Home({ data }: { data: HomePageData }) {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
       const tg = window.Telegram.WebApp;
@@ -37,30 +25,10 @@ export default function Home() {
         tg.expand();
       }
     }
-
-    const loadData = async () => {
-      try {
-        const result = await client.fetch(groq`*[_type == "homePage"][0]{
-          header, greeting, description,
-          "buttons": buttons[] { text, href }
-        }`);
-        setData(result);
-      } catch (error) {
-        console.error('Sanity error:', error);
-      }
-    };
-
-    loadData();
   }, []);
 
   if (!data) {
-    return (
-      <Page>
-        <div className="flex justify-center items-center h-screen">
-          <p>Загрузка...</p>
-        </div>
-      </Page>
-    );
+    return <MainLoader />;
   }
 
   return (

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import { TextLighter } from './ui/Texts/TextLighter';
+import { TextLighter } from '../ui/Texts/TextLighter';
 
 interface CardProps {
   title: string;

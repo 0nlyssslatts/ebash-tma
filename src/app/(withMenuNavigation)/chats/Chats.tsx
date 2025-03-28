@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-import { ChatCard } from '@/components/ChatCard';
+import { ChatCard } from '@/components/Cards/ChatCard';
 import { Page } from '@/components/Page';
 import { DarkSection } from '@/components/ui/DarkSection';
 import { Header } from '@/components/ui/Texts/Header';
