@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ReactNode, useState } from 'react';
 
+import { ArrowIcon } from './ArrowIcon';
 import { DarkSection } from './DarkSection';
 import { Text } from './Texts/Text';
 

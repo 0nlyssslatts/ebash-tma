@@ -1,4 +1,3 @@
-import { cn } from '@/lib/utils/utils';
 
 export function ArrowIcon({ isOpen }: { isOpen: boolean }) {
   return (
