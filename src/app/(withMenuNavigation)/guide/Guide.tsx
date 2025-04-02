@@ -54,16 +54,16 @@ export default function Guide(data: GuidePageData) {
       <Header>{data.header}</Header>
 
       <ClosingSection header="Наши ценности">
-        {data.values.map(({ titleValue, descriptionValue }) => (
-          <div className="mb-5">
+        {data.values.map(({ titleValue, descriptionValue }, index: number) => (
+          <div key={index} className="mb-5">
             <TextLight>{titleValue}</TextLight>
             <TextLighter>{descriptionValue}</TextLighter>
           </div>
         ))}
       </ClosingSection>
       <ClosingSection header="MINDSET REPKA">
-        {data.mindsetREPKA.map(({ titleREPKA, descriptionREPKA, hrefREPKA }) => (
-          <div className="mb-5">
+        {data.mindsetREPKA.map(({ titleREPKA, descriptionREPKA, hrefREPKA }, index: number) => (
+          <div key={index} className="mb-5">
             <div>
               <TextLight>{titleREPKA}</TextLight>
               <TextLighter>{descriptionREPKA}</TextLighter>
@@ -78,8 +78,8 @@ export default function Guide(data: GuidePageData) {
       </ClosingSection>
 
       <ClosingSection header="Словарь">
-        {data.dictionary.map(({ term, meaning }) => (
-          <div className="mb-5">
+        {data.dictionary.map(({ term, meaning }, index: number) => (
+          <div key={index} className="mb-5">
             <TextLight>{term}</TextLight>
             <TextLighter>{meaning}</TextLighter>
           </div>
