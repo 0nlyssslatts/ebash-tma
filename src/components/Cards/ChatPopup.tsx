@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 
-import { BackButton } from '../ui/Buttons/BackButton';
-import { Button } from '../ui/Buttons/Button';
 import { SmallButton } from '../ui/Buttons/SmallButton';
 import { TextLighter } from '../ui/Texts/TextLighter';
 
