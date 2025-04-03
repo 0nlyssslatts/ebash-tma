@@ -1,14 +1,55 @@
 'use client';
 
-import { InfoCard } from '@/components/Cards/InfoCard';
-import { Page } from '@/components/Page';
-import { Header } from '@/components/ui/Texts/Header';
+import { useEffect } from 'react';
 
-export default function Bonus() {
+import { Page } from '@/components/Page';
+import { Button } from '@/components/ui/Buttons/Button';
+import { ClosingSection } from '@/components/ui/ClosingSection';
+import { MainLoader } from '@/components/ui/MainLoader';
+import { Header } from '@/components/ui/Texts/Header';
+import { TextLight } from '@/components/ui/Texts/TextLight';
+import { TextLighter } from '@/components/ui/Texts/TextLighter';
+
+interface BonusPageProps {
+  header: string;
+  bonuses: { title: string; description: string; buttonDescription: string; buttonText: string; buttonHref: string }[];
+}
+
+export default function Bonus(data: BonusPageProps) {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      const tg = window.Telegram.WebApp;
+      try {
+        tg.requestFullscreen();
+      } catch (error) {
+        console.log(error);
+        tg.expand();
+      }
+    }
+  }, []);
+
+  if (!data) {
+    return <MainLoader />;
+  }
+
   return (
     <Page>
-      <Header>BONUS</Header>
-      <div className="flex flex-col gap-4">
+      <Header>{data.header}</Header>
+      {data.bonuses.map(({ title, description, buttonDescription, buttonText, buttonHref }, index) => (
+        <ClosingSection header={title} key={index}>
+          <TextLight>{description}</TextLight>
+          <TextLighter>{buttonDescription}</TextLighter>
+          <a href={buttonHref}>
+            <Button>{buttonText}</Button>
+          </a>
+        </ClosingSection>
+      ))}
+    </Page>
+  );
+}
+
+{
+  /* <div className="flex flex-col gap-4">
         <InfoCard
           title="TEST"
           text="текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст "
@@ -22,8 +63,7 @@ export default function Bonus() {
           buttonText="Подробнее"
         />
         <div className="border rounded-xl p-3 text-sm">
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст
+          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
         </div>
         <InfoCard
           title="TEST"
@@ -31,7 +71,5 @@ export default function Bonus() {
           href="#"
           buttonText="Подробнее"
         />
-      </div>
-    </Page>
-  );
+      </div> */
 }
