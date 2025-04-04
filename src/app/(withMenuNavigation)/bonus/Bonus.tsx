@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ClosingSection } from '@/components/ui/ClosingSection';
@@ -16,18 +14,6 @@ interface BonusPageProps {
 }
 
 export default function Bonus(data: BonusPageProps) {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      try {
-        tg.requestFullscreen();
-      } catch (error) {
-        console.log(error);
-        tg.expand();
-      }
-    }
-  }, []);
-
   if (!data) {
     return <MainLoader />;
   }

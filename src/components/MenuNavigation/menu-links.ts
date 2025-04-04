@@ -3,7 +3,7 @@ import { CircleHelp, CandyCane, Calendar, CircleCheck, MessageCircle } from 'luc
 export const MENU_LINKS = [
     {
         Icon: CircleHelp,
-        link: '/guide',
+        link: '/help',
     },
     {
         Icon: CandyCane,
@@ -15,7 +15,7 @@ export const MENU_LINKS = [
     },
     {
         Icon: CircleCheck,
-        link: '/moves',
+        link: '/guide',
     },
     {
         Icon: MessageCircle,

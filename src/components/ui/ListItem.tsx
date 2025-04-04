@@ -15,15 +15,15 @@ export function ListItem({ item }: { item: string }) {
     <motion.li
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="flex flex-row items-center relative"
+      className="flex flex-row items-center relative select-none"
       onClick={handleCheckboxChange}
     >
       {isChecked && (
         <svg
-          className="absolute left-1"
-          width="31"
-          height="22"
-          viewBox="0 0 31 22"
+          className="absolute left-[9px] top-[14px]"
+          width="24"
+          height="24"
+          viewBox="0 0 31 31"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

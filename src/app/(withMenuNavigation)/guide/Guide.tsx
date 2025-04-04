@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ClosingSection } from '@/components/ui/ClosingSection';
@@ -34,28 +32,17 @@ interface GuidePageData {
 }
 
 export default function Guide(data: GuidePageData) {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      try {
-        tg.requestFullscreen();
-      } catch (error) {
-        console.log(error);
-        tg.expand();
-      }
-    }
-  }, []);
-
   if (!data) {
     return <MainLoader />;
   }
+
   return (
     <Page>
       <Header>{data.header}</Header>
 
       <ClosingSection header="Наши ценности">
         {data.values.map(({ titleValue, descriptionValue }, index: number) => (
-          <div key={index} className="mb-5">
+          <div key={index} className="mb-3">
             <TextLight>{titleValue}</TextLight>
             <TextLighter>{descriptionValue}</TextLighter>
           </div>
@@ -63,7 +50,7 @@ export default function Guide(data: GuidePageData) {
       </ClosingSection>
       <ClosingSection header="MINDSET REPKA">
         {data.mindsetREPKA.map(({ titleREPKA, descriptionREPKA, hrefREPKA }, index: number) => (
-          <div key={index} className="mb-5">
+          <div key={index} className="mb-3">
             <div>
               <TextLight>{titleREPKA}</TextLight>
               <TextLighter>{descriptionREPKA}</TextLighter>
@@ -79,16 +66,15 @@ export default function Guide(data: GuidePageData) {
 
       <ClosingSection header="Словарь">
         {data.dictionary.map(({ term, meaning }, index: number) => (
-          <div key={index} className="mb-5">
+          <div key={index} className="mb-3">
             <TextLight>{term}</TextLight>
             <TextLighter>{meaning}</TextLighter>
           </div>
         ))}
       </ClosingSection>
 
-      <Section>
+      <Section className="mt-7">
         <Text>Чек-лист EБАШера</Text>
-        <TextLighter>пункты кликабельные, нажимай на них</TextLighter>
         <List className="mt-3" listArray={data.checklist} />
       </Section>
     </Page>
