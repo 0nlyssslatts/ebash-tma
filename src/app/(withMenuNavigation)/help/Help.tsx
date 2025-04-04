@@ -1,7 +1,5 @@
 'use client';
 
-import { title } from 'process';
-
 import { Page } from '@/components/Page';
 import { SmallButton } from '@/components/ui/Buttons/SmallButton';
 import { DarkSection } from '@/components/ui/DarkSection';
