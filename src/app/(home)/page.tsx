@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Главная страница',
 };
 
-export const revalidate = 43200;
+export const revalidate = 600;
 
 async function getHomePageData() {
   return await client.fetch(groq`*[_type == "homePage"][0]{

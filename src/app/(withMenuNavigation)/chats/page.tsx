@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Страница с чатами',
 };
 
-export const revalidate = 43200;
+export const revalidate = 600;
 
 async function getChatsPageData() {
   return await client.fetch(groq`*[_type == "chatsPage"][0]{

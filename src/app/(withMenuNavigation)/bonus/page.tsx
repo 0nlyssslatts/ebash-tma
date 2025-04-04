@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Ништяки и материалы',
 };
 
-export const revalidate = 43200;
+export const revalidate = 600;
 
 async function getBonusPageData() {
   return await client.fetch(groq`*[_type == "bonusPage"][0]{
