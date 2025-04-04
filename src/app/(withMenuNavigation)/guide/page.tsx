@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: 'Гайд для новичков',
 };
 
+export const revalidate = 43200;
+
 async function getGuidePageData() {
   return await client.fetch(groq`*[_type == "guidePage"][0]{
     header, 
