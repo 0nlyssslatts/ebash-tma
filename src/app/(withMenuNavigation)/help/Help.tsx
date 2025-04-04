@@ -24,10 +24,10 @@ export default function Help({ title, text, description, button, buttonHref }: H
       <DarkSection>
         <Text>{text}</Text>
         <TextLight>{description}</TextLight>
+        <a href={buttonHref}>
+          <SmallButton className="mt-6">{button}</SmallButton>
+        </a>
       </DarkSection>
-      <a href={buttonHref}>
-        <SmallButton className="mt-6">{button}</SmallButton>
-      </a>
     </Page>
   );
 }
