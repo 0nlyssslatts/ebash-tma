@@ -1,5 +1,7 @@
 'use client';
 
+import { title } from 'process';
+
 import { Page } from '@/components/Page';
 import { SmallButton } from '@/components/ui/Buttons/SmallButton';
 import { DarkSection } from '@/components/ui/DarkSection';
@@ -7,19 +9,25 @@ import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 
-export default function Help() {
+interface HelpPageProps {
+  title: string;
+  text: string;
+  description: string;
+  button: string;
+  buttonHref: string;
+}
+
+export default function Help({ title, text, description, button, buttonHref }: HelpPageProps) {
   return (
     <Page>
-      <Header>HELP</Header>
+      <Header>{title}</Header>
       <DarkSection>
-        <Text>Какие у нас ценности?</Text>
-        <TextLight>
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-          текст текст текст текст текст текст текст текст текст текст текст текст текст текст
-        </TextLight>
+        <Text>{text}</Text>
+        <TextLight>{description}</TextLight>
       </DarkSection>
-      <SmallButton className='mt-6'>Написать в поддержку</SmallButton>
+      <a href={buttonHref}>
+        <SmallButton className="mt-6">{button}</SmallButton>
+      </a>
     </Page>
   );
 }
