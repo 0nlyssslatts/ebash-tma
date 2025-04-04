@@ -23,7 +23,7 @@ export function ChatCard({ title, descriptionShort, descriptionLong, href, color
   return (
     <>
       <motion.div
-        whileHover={{ scale: 1.02, y: -8 }}
+        whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
         className="overflow-hidden relative rounded px-2 py-2 w-full flex flex-col gap-2 border"
         onClick={() => handlePopup({ title, descriptionLong, href })}

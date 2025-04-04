@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ChatCard } from '@/components/Cards/ChatCard';
 import { ChatPopup } from '@/components/Cards/ChatPopup';
@@ -33,18 +33,6 @@ export default function Chats(data: ChatsPageData) {
   const handlePopup = ({ title, descriptionLong, href }: CardPopupProps) => {
     setShowPopup({ title, descriptionLong, href });
   };
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      try {
-        tg.requestFullscreen();
-      } catch (error) {
-        console.log(error);
-        tg.expand();
-      }
-    }
-  }, []);
 
   if (!data) {
     return <MainLoader />;
