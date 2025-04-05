@@ -13,25 +13,7 @@ import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
-interface GuidePageData {
-  header: string;
-  values: {
-    titleValue: string;
-    descriptionValue: string;
-  }[];
-  mindsetREPKA: {
-    titleREPKA: string;
-    descriptionREPKA: string;
-    hrefREPKA: string;
-  }[];
-  dictionary: {
-    term: string;
-    meaning: string;
-  }[];
-  checklist: {
-    check: string;
-  }[];
-}
+import { GuidePageData } from '@/lib/types/guide';
 
 export default function Guide(data: GuidePageData) {
   const router = useRouter();

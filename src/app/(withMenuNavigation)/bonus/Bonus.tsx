@@ -10,10 +10,7 @@ import { Header } from '@/components/ui/Texts/Header';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
-interface BonusPageProps {
-  header: string;
-  bonuses: { title: string; description: string; buttonDescription: string; buttonText: string; buttonHref: string }[];
-}
+import { BonusPageProps } from '@/lib/types/bonus';
 
 export default function Bonus(data: BonusPageProps) {
   const router = useRouter();

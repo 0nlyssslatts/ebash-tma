@@ -9,13 +9,7 @@ import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 
-interface HelpPageProps {
-  title: string;
-  text: string;
-  description: string;
-  button: string;
-  buttonHref: string;
-}
+import { HelpPageProps } from '@/lib/types/help';
 
 export default function Help({ title, text, description, button, buttonHref }: HelpPageProps) {
   const router = useRouter();
