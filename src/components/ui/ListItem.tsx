@@ -1,17 +1,23 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { TextLight } from './Texts/TextLight';
-import { cn } from '@/lib/utils/utils';
 import { useHaptic } from '@/hooks/useHaptic';
 
-export function ListItem({ item }: { item: string }) {
-  const [isChecked, setIsChecked] = useState(false);
+import { TextLight } from './Texts/TextLight';
+import { cn } from '@/lib/utils/utils';
+
+interface ListItemProps {
+  item: string;
+  handleStorage: () => void;
+  isChecked: boolean;
+}
+
+export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
 
   const handleCheckboxChange = () => {
+    handleStorage();
     haptic.notificationOccurred('success');
-    setIsChecked((prev) => !prev);
   };
 
   return (
