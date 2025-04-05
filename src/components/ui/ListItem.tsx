@@ -49,7 +49,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
       <input
         type="checkbox"
         className="w-12 h-11 m-0 mr-2 rounded-lg appearance-none border 
-         checked:bg-black
+         checked:bg-black checked:border-textgreen
          focus:outline-none focus:ring-1 focus:ring-green-100
          "
         checked={isChecked}
@@ -60,10 +60,10 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
       <div
         className={cn(
           'w-full flex flex-row gap-5 hover:cursor-pointer text-textgreen px-3 py-2 rounded font-medium transition-all relative border rounded-lg',
-          isChecked ? 'bg-black line-through' : ''
+          isChecked ? 'bg-black line-through border-textgreen' : ''
         )}
       >
-        <TextLight className="text-base text-white">{item}</TextLight>
+        <TextLight className={cn('text-base text-white', isChecked ? 'text-textgreen' : '')}>{item}</TextLight>
       </div>
     </motion.li>
   );
