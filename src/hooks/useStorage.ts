@@ -1,5 +1,7 @@
+'use client';
+
 import { cloudStorage } from '@telegram-apps/sdk';
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface Checks {
   id: number;
@@ -9,29 +11,44 @@ interface Checks {
 const useStorage = () => {
   const [checks, setChecks] = useState<string[]>([]);
 
-  const getCheck = async () => {
-    if (cloudStorage.isSupported() && cloudStorage.getKeys.isAvailable()) {
-      const keys = await cloudStorage.getKeys();
-      setChecks(keys);
-    }
-  };
-
-  const handleCheck = async ({ id, value }: Checks): Promise<void> => {
-    if (cloudStorage.isSupported() && cloudStorage.setItem.isAvailable() && cloudStorage.deleteItem.isAvailable()) {
-      if (checks.includes(value)) {
-        await cloudStorage.deleteItem(`${id}`);
-      } else {
-        await cloudStorage.setItem(`${id}`, value);
+  const getCheck = useCallback(async () => {
+    if (typeof window !== 'undefined' && cloudStorage.isSupported() && cloudStorage.getKeys.isAvailable()) {
+      try {
+        const keys = await cloudStorage.getKeys();
+        setChecks(keys);
+      } catch (error) {
+        console.error('Failed to get storage keys:', error);
       }
-      await getCheck(); // Обновляем список после изменения
     }
-  };
-
-  useLayoutEffect(() => {
-    getCheck();
   }, []);
 
-  return cloudStorage.isSupported() ? { handleCheck, checks } : undefined;
+  const handleCheck = useCallback(
+    async ({ id, value }: Checks) => {
+      if (typeof window !== 'undefined' && cloudStorage.isSupported()) {
+        try {
+          if (checks.includes(value)) {
+            await cloudStorage.deleteItem(`${id}`);
+          } else {
+            await cloudStorage.setItem(`${id}`, value);
+          }
+          await getCheck();
+        } catch (error) {
+          console.error('Storage operation failed:', error);
+        }
+      }
+    },
+    [checks, getCheck]
+  );
+
+  useEffect(() => {
+    getCheck();
+  }, [getCheck]);
+
+  return {
+    handleCheck,
+    checks,
+    isSupported: typeof window !== 'undefined' && cloudStorage.isSupported(),
+  };
 };
 
 export default useStorage;
