@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
 interface Checks {
   id: string;
@@ -11,13 +11,17 @@ const useStorage = () => {
   const tg = window.Telegram?.WebApp;
   const [checks, setChecks] = useState<string[]>([]);
 
-  const getCheck = async () => {
+  const getCheck = useCallback(async () => {
     try {
       if (!tg?.CloudStorage) return;
 
       const keys = await new Promise<string[]>((resolve, reject) => {
         tg.CloudStorage.getKeys((error: Error, data: string[]) => {
-          error ? reject(error) : resolve(data);
+          if (error) {
+            reject(error);
+          } else {
+            resolve(data);
+          }
         });
       });
       setChecks(keys);
@@ -25,7 +29,7 @@ const useStorage = () => {
       console.error('Error getting keys:', error);
       setChecks([]);
     }
-  };
+  }, [tg?.CloudStorage]);
 
   const handleCheck = async ({ id, value }: Checks) => {
     try {
@@ -35,13 +39,21 @@ const useStorage = () => {
       if (exists) {
         await new Promise((resolve, reject) => {
           tg.CloudStorage.removeItem(id, (error: Error) => {
-            error ? reject(error) : resolve(null);
+            if (error) {
+              reject(error);
+            } else {
+              resolve(null);
+            }
           });
         });
       } else {
         await new Promise((resolve, reject) => {
           tg.CloudStorage.setItem(id, value, (error: Error) => {
-            error ? reject(error) : resolve(null);
+            if (error) {
+              reject(error);
+            } else {
+              resolve(null);
+            }
           });
         });
       }
@@ -56,7 +68,7 @@ const useStorage = () => {
   useLayoutEffect(() => {
     tg?.ready();
     getCheck();
-  }, []);
+  }, [getCheck, tg]);
 
   return { checks, handleCheck };
 };
