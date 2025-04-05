@@ -22,23 +22,16 @@ const useStorage = () => {
     }
   }, []);
 
-  const handleCheck = useCallback(
-    async ({ id, value }: Checks) => {
-      if (typeof window !== 'undefined' && cloudStorage.isSupported()) {
-        try {
-          if (checks.includes(value)) {
-            await cloudStorage.deleteItem(`${id}`);
-          } else {
-            await cloudStorage.setItem(`${id}`, value);
-          }
-          await getCheck();
-        } catch (error) {
-          console.error('Storage operation failed:', error);
-        }
+  const handleCheck = async ({ id, value }: Checks) => {
+    if (typeof window !== 'undefined' && cloudStorage.isSupported()) {
+      if (checks.includes(value)) {
+        await cloudStorage.deleteItem(`${id}`);
+      } else {
+        await cloudStorage.setItem(`${id}`, value);
       }
-    },
-    [checks, getCheck]
-  );
+      await getCheck();
+    }
+  };
 
   useEffect(() => {
     getCheck();
