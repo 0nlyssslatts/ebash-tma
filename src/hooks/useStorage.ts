@@ -47,7 +47,7 @@ const useStorage = () => {
   return {
     handleCheck,
     checks,
-    isSupported: typeof window !== 'undefined' && cloudStorage.isSupported(),
+    isSupported: true,
   };
 };
 
