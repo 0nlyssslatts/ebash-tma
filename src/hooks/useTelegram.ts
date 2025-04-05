@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export function useTelegramWebApp() {
+export default function useTelegramWebApp() {
   const [tg, setTg] = useState<typeof window.Telegram.WebApp | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
