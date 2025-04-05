@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ClosingSection } from '@/components/ui/ClosingSection';
@@ -11,27 +13,11 @@ import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
-interface GuidePageData {
-  header: string;
-  values: {
-    titleValue: string;
-    descriptionValue: string;
-  }[];
-  mindsetREPKA: {
-    titleREPKA: string;
-    descriptionREPKA: string;
-    hrefREPKA: string;
-  }[];
-  dictionary: {
-    term: string;
-    meaning: string;
-  }[];
-  checklist: {
-    check: string;
-  }[];
-}
+import { GuidePageData } from '@/lib/types/guide';
 
 export default function Guide(data: GuidePageData) {
+  const router = useRouter();
+
   if (!data) {
     return <MainLoader />;
   }
@@ -56,9 +42,7 @@ export default function Guide(data: GuidePageData) {
               <TextLighter>{descriptionREPKA}</TextLighter>
             </div>
             <div>
-              <a href={hrefREPKA}>
-                <Button>Смотреть вебинар</Button>
-              </a>
+              <Button onClick={() => router.push(hrefREPKA)}>Смотреть вебинар</Button>
             </div>
           </div>
         ))}
