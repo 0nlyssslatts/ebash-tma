@@ -9,17 +9,8 @@ import { DarkSection } from '@/components/ui/DarkSection';
 import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
-import { TextLight } from '@/components/ui/Texts/TextLight';
 
-interface ChatsPageData {
-  header: string;
-  chats: {
-    title: string;
-    description: string;
-    color: string;
-    href: string;
-  }[];
-}
+import { ChatsPageData } from '@/lib/types/chats';
 
 interface CardPopupProps {
   title: string;

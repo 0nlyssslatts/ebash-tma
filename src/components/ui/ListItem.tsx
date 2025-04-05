@@ -28,34 +28,36 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
       className="flex flex-row items-center relative select-none"
       onClick={handleCheckboxChange}
     >
-      {isChecked && (
-        <svg
-          className="absolute left-[9px] top-[14px]"
-          width="24"
-          height="24"
-          viewBox="0 0 31 31"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M29.6667 1L9.95833 20.7083L1 11.75"
-            stroke="#96FFCE"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )}
-      <input
-        type="checkbox"
-        className="w-12 h-11 m-0 mr-2 rounded-lg appearance-none border 
+      <div className="relative w-12 h-11 mr-2">
+        <input
+          type="checkbox"
+          className="w-full h-full m-0 rounded-lg appearance-none border 
          checked:bg-black checked:border-textgreen
          focus:outline-none focus:ring-1 focus:ring-green-100
          "
-        checked={isChecked}
-        readOnly
-        onClick={(e) => e.preventDefault()}
-      />
+          checked={isChecked}
+          readOnly
+          onClick={(e) => e.preventDefault()}
+        />
+        {isChecked && (
+          <svg
+            className="absolute left-[9px] top-[14px]"
+            width="24"
+            height="24"
+            viewBox="0 0 31 31"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M29.6667 1L9.95833 20.7083L1 11.75"
+              stroke="#96FFCE"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </div>
 
       <div
         className={cn(
