@@ -22,6 +22,7 @@
     "path-to-regexp": "^8.2.0",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "3"
