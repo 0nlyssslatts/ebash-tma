@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Расписание встреч',
 };
 
-export const revalidate = 43200;
+export const revalidate = 600;
 
 async function getMeetsPageData() {
   return await client.fetch(groq`

@@ -15,8 +15,7 @@ interface ChatsPageData {
   header: string;
   chats: {
     title: string;
-    descriptionShort: string;
-    descriptionLong: string;
+    description: string;
     color: string;
     href: string;
   }[];
@@ -24,14 +23,13 @@ interface ChatsPageData {
 
 interface CardPopupProps {
   title: string;
-  descriptionLong: string;
   href: string;
 }
 
 export default function Chats(data: ChatsPageData) {
-  const [showPopup, setShowPopup] = useState<CardPopupProps>({ title: '', descriptionLong: '', href: '' });
-  const handlePopup = ({ title, descriptionLong, href }: CardPopupProps) => {
-    setShowPopup({ title, descriptionLong, href });
+  const [showPopup, setShowPopup] = useState<CardPopupProps>({ title: '', href: '' });
+  const handlePopup = ({ title, href }: CardPopupProps) => {
+    setShowPopup({ title, href });
   };
 
   if (!data) {
@@ -52,18 +50,16 @@ export default function Chats(data: ChatsPageData) {
             key={index}
             href={chat.href}
             title={chat.title}
-            descriptionShort={chat.descriptionShort}
+            description={chat.description}
             color={chat.color}
-            descriptionLong={chat.descriptionLong}
           />
         ))}
       </div>
       {showPopup.title != '' && (
         <ChatPopup
           title={showPopup.title}
-          descriptionLong={showPopup.descriptionLong}
           href={showPopup.href}
-          popupHandler={() => setShowPopup({ title: '', descriptionLong: '', href: '' })}
+          popupHandler={() => setShowPopup({ title: '', href: '' })}
         />
       )}
     </Page>
