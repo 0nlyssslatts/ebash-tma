@@ -13,9 +13,6 @@ import { Text } from '@/components/ui/Texts/Text';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
-import useTelegramWebApp from '@/hooks/useTelegram';
-
-// Динамически загружаем компоненты, зависящие от клиентских API
 const List = dynamic(() => import('@/components/ui/List').then((mod) => mod.List), {
   ssr: false,
   loading: () => <div>Загрузка чек-листа...</div>,
@@ -42,8 +39,6 @@ interface GuidePageData {
 }
 
 export default function Guide(data: GuidePageData) {
-  const { isReady } = useTelegramWebApp();
-
   if (!data) {
     return <MainLoader />;
   }
@@ -88,13 +83,7 @@ export default function Guide(data: GuidePageData) {
 
       <Section className="mt-7">
         <Text>Чек-лист EБАШера</Text>
-        <Suspense fallback={<div>Загрузка списка...</div>}>
-          {isReady ? (
-            <List className="mt-3" listArray={data.checklist} />
-          ) : (
-            <div className="text-gray-500 mt-3">Чек-лист доступен после инициализации приложения</div>
-          )}
-        </Suspense>
+        <List listArray={data.checklist} />
       </Section>
     </Page>
   );

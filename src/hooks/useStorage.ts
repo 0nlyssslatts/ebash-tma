@@ -1,7 +1,8 @@
 'use client';
 
-import { cloudStorage } from '@telegram-apps/sdk';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+// Correct import
 
 interface Checks {
   id: number;
@@ -10,26 +11,18 @@ interface Checks {
 
 const useStorage = () => {
   const [checks, setChecks] = useState<string[]>([]);
+  const tg = window.Telegram?.WebApp.CloudStorage;
 
-  const getCheck = useCallback(async () => {
-    if (typeof window !== 'undefined' && cloudStorage.isSupported() && cloudStorage.getKeys.isAvailable()) {
-      try {
-        const keys = await cloudStorage.getKeys();
-        setChecks(keys);
-      } catch (error) {
-        console.error('Failed to get storage keys:', error);
-      }
-    }
-  }, []);
+  const getCheck = async () => {
+    const keys = await tg.getKeys();
+    setChecks(keys);
+  };
 
   const handleCheck = async ({ id, value }: Checks) => {
-    if (typeof window !== 'undefined' && cloudStorage.isSupported()) {
-      if (checks.includes(value)) {
-        await cloudStorage.deleteItem(`${id}`);
-      } else {
-        await cloudStorage.setItem(`${id}`, value);
-      }
-      await getCheck();
+    if (checks.includes(`${id}`)) {
+      await tg.deleteItem(`${id}`);
+    } else {
+      await tg.setItem(`${id}`, value[0]);
     }
   };
 
@@ -37,11 +30,7 @@ const useStorage = () => {
     getCheck();
   }, [getCheck]);
 
-  return {
-    handleCheck,
-    checks,
-    isSupported: true,
-  };
+  return {};
 };
 
 export default useStorage;
