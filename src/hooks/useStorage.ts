@@ -8,47 +8,55 @@ interface Checks {
 }
 
 const useStorage = () => {
-  const tg = window.Telegram?.WebApp?.CloudStorage;
+  const tg = window.Telegram?.WebApp;
   const [checks, setChecks] = useState<string[]>([]);
 
   const getCheck = async () => {
-    const keys = await tg.getKeys((error: Error, data: string[]) => {
-      if (error) {
-        console.error('Error getting keys:', error);
-      } else {
-        console.log('Received keys:', data); // Добавлено логирование
-        return data;
-      }
-    });
-    setChecks(Array.isArray(keys) ? keys : []);
+    try {
+      if (!tg?.CloudStorage) return;
+
+      const keys = await new Promise<string[]>((resolve, reject) => {
+        tg.CloudStorage.getKeys((error: Error, data: string[]) => {
+          error ? reject(error) : resolve(data);
+        });
+      });
+      setChecks(keys);
+    } catch (error) {
+      console.error('Error getting keys:', error);
+      setChecks([]);
+    }
   };
 
   const handleCheck = async ({ id, value }: Checks) => {
     try {
-      if (tg) {
-        // Оптимизированное обновление состояния
-        setChecks((prev) => {
-          const newChecks = prev.includes(id.toString())
-            ? prev.filter((key) => key !== id.toString())
-            : [...prev, id.toString()];
-          return newChecks;
+      if (!tg?.CloudStorage) return;
+
+      const exists = checks.includes(id);
+      if (exists) {
+        await new Promise((resolve, reject) => {
+          tg.CloudStorage.removeItem(id, (error: Error) => {
+            error ? reject(error) : resolve(null);
+          });
         });
-
-        // Отложенный запрос к хранилищу
-        const fn = checks.includes(id.toString()) ? () => tg.removeItem(`${id}`) : () => tg.setItem(`${id}`, value);
-
-        await fn();
+      } else {
+        await new Promise((resolve, reject) => {
+          tg.CloudStorage.setItem(id, value, (error: Error) => {
+            error ? reject(error) : resolve(null);
+          });
+        });
       }
+
+      await getCheck();
     } catch (error) {
       console.error('Error handling check:', error);
-      // Откат состояния при ошибке
-      setChecks((prev) => [...prev]);
+      await getCheck();
     }
   };
 
   useLayoutEffect(() => {
+    tg?.ready();
     getCheck();
-  }, []); // Добавлен пустой массив зависимостей, чтобы useEffect срабатывал только при монтировании
+  }, []);
 
   return { checks, handleCheck };
 };

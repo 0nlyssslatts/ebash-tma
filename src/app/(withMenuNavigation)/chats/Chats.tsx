@@ -24,12 +24,13 @@ interface ChatsPageData {
 interface CardPopupProps {
   title: string;
   href: string;
+  isOpen: boolean;
 }
 
 export default function Chats(data: ChatsPageData) {
-  const [showPopup, setShowPopup] = useState<CardPopupProps>({ title: '', href: '' });
+  const [showPopup, setShowPopup] = useState<CardPopupProps>({ title: '', href: '', isOpen: false });
   const handlePopup = ({ title, href }: CardPopupProps) => {
-    setShowPopup({ title, href });
+    setShowPopup({ title, href, isOpen: true });
   };
 
   if (!data) {
@@ -40,7 +41,7 @@ export default function Chats(data: ChatsPageData) {
     <Page>
       <Header>{data.header}</Header>
       <DarkSection>
-        <TextLight>Для вступления тыкни на карточку</TextLight>
+        <TextLight className="text-center">Для вступления тыкни на карточку</TextLight>
       </DarkSection>
       <Text className="self-start my-5">Чаты</Text>
       <div className="grid grid-cols-2 gap-3">
@@ -59,7 +60,9 @@ export default function Chats(data: ChatsPageData) {
         <ChatPopup
           title={showPopup.title}
           href={showPopup.href}
-          popupHandler={() => setShowPopup({ title: '', href: '' })}
+          id={showPopup.title}
+          popupHandler={() => setShowPopup({ title: '', href: '', isOpen: false })}
+          isOpen={showPopup.isOpen}
         />
       )}
     </Page>
