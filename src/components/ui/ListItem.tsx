@@ -1,18 +1,24 @@
+'use client';
+
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
 
 import { TextLight } from './Texts/TextLight';
 import { cn } from '@/lib/utils/utils';
 
-export function ListItem({ item }: { item: string }) {
-  const [isChecked, setIsChecked] = useState(false);
+interface ListItemProps {
+  item: string;
+  handleStorage: () => void;
+  isChecked: boolean;
+}
+
+export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
 
   const handleCheckboxChange = () => {
+    handleStorage();
     haptic.notificationOccurred('success');
-    setIsChecked((prev) => !prev);
   };
 
   return (
@@ -26,13 +32,16 @@ export function ListItem({ item }: { item: string }) {
         <input
           type="checkbox"
           className="w-full h-full m-0 rounded-lg appearance-none border 
-           checked:bg-black
-           focus:outline-none focus:ring-1 focus:ring-green-100"
+         checked:bg-black checked:border-textgreen
+         focus:outline-none focus:ring-1 focus:ring-green-100
+         "
           checked={isChecked}
+          readOnly
+          onClick={(e) => e.preventDefault()}
         />
         {isChecked && (
           <svg
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-1"
+            className="absolute left-[9px] top-[14px]"
             width="24"
             height="24"
             viewBox="0 0 31 31"
@@ -53,10 +62,10 @@ export function ListItem({ item }: { item: string }) {
       <div
         className={cn(
           'w-full flex flex-row gap-5 hover:cursor-pointer text-textgreen px-3 py-2 rounded font-medium transition-all relative border rounded-lg',
-          isChecked ? 'bg-black line-through' : ''
+          isChecked ? 'bg-black line-through border-textgreen' : ''
         )}
       >
-        <TextLight className="text-base text-white">{item}</TextLight>
+        <TextLight className={cn('text-base text-white', isChecked ? 'text-textgreen' : '')}>{item}</TextLight>
       </div>
     </motion.li>
   );
