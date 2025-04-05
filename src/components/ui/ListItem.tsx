@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 
 import { useHaptic } from '@/hooks/useHaptic';
@@ -13,6 +15,7 @@ interface ListItemProps {
 
 export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
+  console.log('isChecked:', isChecked);
 
   const handleCheckboxChange = () => {
     handleStorage();
@@ -51,6 +54,8 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
          focus:outline-none focus:ring-1 focus:ring-green-100
          "
         checked={isChecked}
+        readOnly
+        onClick={(e) => e.preventDefault()}
       />
 
       <div

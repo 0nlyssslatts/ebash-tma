@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';

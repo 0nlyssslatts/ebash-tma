@@ -19,7 +19,7 @@ export default function Home({ data }: { data: HomePageData }) {
     if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
       const tg = window.Telegram.WebApp;
       try {
-        tg.requestFullscreen();
+        // tg.requestFullscreen();
         tg.disableVerticalSwipes();
       } catch (error) {
         console.log(error);
