@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils/utils';
 
 export function List({ listArray, className }: { listArray: { check: string }[]; className?: string }) {
   const { checks, handleCheck } = useStorage();
-
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa', checks);
   return (
     <ul className={cn('flex flex-col gap-2', className)}>
       {listArray.map(({ check }, index) => (
@@ -15,7 +15,7 @@ export function List({ listArray, className }: { listArray: { check: string }[];
           key={index}
           item={check}
           isChecked={checks.includes(String(index))}
-          handleStorage={() => handleCheck({ id: index, value: check })}
+          handleStorage={() => handleCheck({ id: String(index), value: check })}
         />
       ))}
     </ul>

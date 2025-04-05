@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 interface Checks {
-  id: number;
+  id: string;
   value: string;
 }
 
@@ -12,7 +12,14 @@ const useStorage = () => {
   const [checks, setChecks] = useState<string[]>([]);
 
   const getCheck = async () => {
-    const keys = await tg.getKeys();
+    const keys = await tg.getKeys((error: Error, data: string[]) => {
+      if (error) {
+        console.error('Error getting keys:', error);
+      } else {
+        console.log('Received keys:', data); // Добавлено логирование
+        return data;
+      }
+    });
     setChecks(Array.isArray(keys) ? keys : []);
   };
 
@@ -39,7 +46,7 @@ const useStorage = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getCheck();
   }, []); // Добавлен пустой массив зависимостей, чтобы useEffect срабатывал только при монтировании
 

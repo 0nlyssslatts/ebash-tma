@@ -15,7 +15,6 @@ interface ListItemProps {
 
 export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
-  console.log('isChecked:', isChecked);
 
   const handleCheckboxChange = () => {
     handleStorage();
