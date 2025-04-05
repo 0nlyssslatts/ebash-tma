@@ -3,11 +3,14 @@ import { useState } from 'react';
 
 import { TextLight } from './Texts/TextLight';
 import { cn } from '@/lib/utils/utils';
+import { useHaptic } from '@/hooks/useHaptic';
 
 export function ListItem({ item }: { item: string }) {
   const [isChecked, setIsChecked] = useState(false);
+  const haptic = useHaptic();
 
   const handleCheckboxChange = () => {
+    haptic.notificationOccurred('success');
     setIsChecked((prev) => !prev);
   };
 
@@ -30,9 +33,9 @@ export function ListItem({ item }: { item: string }) {
           <path
             d="M29.6667 1L9.95833 20.7083L1 11.75"
             stroke="#96FFCE"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
       )}

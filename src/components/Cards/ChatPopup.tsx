@@ -13,7 +13,7 @@ interface CardPopupProps {
 export function ChatPopup({ title, href, popupHandler }: CardPopupProps) {
   return (
     <motion.div
-      initial={{ y: '100vh', opacity: 0, x: '-50%' }}
+      initial={{ y: '30%', opacity: 0, x: '-50%' }}
       animate={{ y: '90%', opacity: 1, x: '-50%' }}
       className="rounded p-8 z-10 w-[340px] fixed top-0 left-[50%] bg-secondary/60 backdrop-blur-xl"
       onClick={popupHandler}

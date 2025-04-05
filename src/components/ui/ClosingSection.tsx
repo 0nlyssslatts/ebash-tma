@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ReactNode, useState } from 'react';
 
+import { useHaptic } from '@/hooks/useHaptic';
+
 import { ArrowIcon } from './ArrowIcon';
 import { DarkSection } from './DarkSection';
 import { Text } from './Texts/Text';
@@ -14,13 +16,16 @@ interface ClosingSectionProps {
 
 export function ClosingSection({ header, children }: ClosingSectionProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const haptic = useHaptic();
 
   return (
     <DarkSection className="select-none">
       <motion.div
         className="flex flex-row justify-between cursor-pointer"
-        onClick={() => setIsOpen((prev) => !prev)}
-        layout
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          haptic.impactOccurred('medium');
+        }}
       >
         <div>
           <Text>{header}</Text>

@@ -20,6 +20,7 @@ export default function Home({ data }: { data: HomePageData }) {
       const tg = window.Telegram.WebApp;
       try {
         tg.requestFullscreen();
+        tg.disableVerticalSwipes();
       } catch (error) {
         console.log(error);
         tg.expand();
