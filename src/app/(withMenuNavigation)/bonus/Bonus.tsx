@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ClosingSection } from '@/components/ui/ClosingSection';
@@ -14,6 +16,8 @@ interface BonusPageProps {
 }
 
 export default function Bonus(data: BonusPageProps) {
+  const router = useRouter();
+
   if (!data) {
     return <MainLoader />;
   }
@@ -25,9 +29,7 @@ export default function Bonus(data: BonusPageProps) {
         <ClosingSection header={title} key={index}>
           <TextLight>{description}</TextLight>
           <TextLighter>{buttonDescription}</TextLighter>
-          <a href={buttonHref}>
-            <Button>{buttonText}</Button>
-          </a>
+          <Button onClick={() => router.push(buttonHref)}>{buttonText}</Button>
         </ClosingSection>
       ))}
     </Page>

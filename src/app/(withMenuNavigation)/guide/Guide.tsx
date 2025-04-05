@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
 import { ClosingSection } from '@/components/ui/ClosingSection';
@@ -32,6 +34,8 @@ interface GuidePageData {
 }
 
 export default function Guide(data: GuidePageData) {
+  const router = useRouter();
+
   if (!data) {
     return <MainLoader />;
   }
@@ -56,9 +60,7 @@ export default function Guide(data: GuidePageData) {
               <TextLighter>{descriptionREPKA}</TextLighter>
             </div>
             <div>
-              <a href={hrefREPKA}>
-                <Button>Смотреть вебинар</Button>
-              </a>
+              <Button onClick={() => router.push(hrefREPKA)}>Смотреть вебинар</Button>
             </div>
           </div>
         ))}

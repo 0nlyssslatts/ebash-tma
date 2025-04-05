@@ -1,5 +1,7 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
 import { Page } from '@/components/Page';
 import { SmallButton } from '@/components/ui/Buttons/SmallButton';
 import { DarkSection } from '@/components/ui/DarkSection';
@@ -16,15 +18,17 @@ interface HelpPageProps {
 }
 
 export default function Help({ title, text, description, button, buttonHref }: HelpPageProps) {
+  const router = useRouter();
+
   return (
     <Page>
       <Header>{title}</Header>
       <DarkSection>
         <Text>{text}</Text>
         <TextLight>{description}</TextLight>
-        <a href={buttonHref}>
-          <SmallButton className="mt-6">{button}</SmallButton>
-        </a>
+        <SmallButton onClick={() => router.push(buttonHref)} className="mt-6">
+          {button}
+        </SmallButton>
       </DarkSection>
     </Page>
   );

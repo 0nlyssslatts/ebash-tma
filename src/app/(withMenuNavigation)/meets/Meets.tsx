@@ -11,8 +11,11 @@ import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 
 import { MeetsPageData } from '@/lib/types/meets';
+import { useRouter } from 'next/navigation';
 
 export default function Meets({ data }: { data: MeetsPageData }) {
+  const router = useRouter()
+
   if (!data) {
     return <MainLoader />;
   }
@@ -32,7 +35,7 @@ export default function Meets({ data }: { data: MeetsPageData }) {
             key={index}
             title={event.title}
             text={event.description}
-            href="#"
+            href={event.link}
             date={event.date}
             type={event.time}
             time={event.type}
@@ -40,7 +43,7 @@ export default function Meets({ data }: { data: MeetsPageData }) {
         ))}
       </div>
 
-      <SmallButton className="mt-6 py-6">{data.calendarButton}</SmallButton>
+      <SmallButton onClick={() => router.push(data.calendarHref)} className="mt-6 py-6">{data.calendarButton}</SmallButton>
 
       <div className="flex justify-between items-center w-full mt-6">
         <p className="text-lg">Регулярные активности</p>
@@ -53,7 +56,7 @@ export default function Meets({ data }: { data: MeetsPageData }) {
             key={index}
             title={activity.title}
             text={activity.description}
-            href="#"
+            href={activity.buttonHref}
             buttonText={activity.buttonText}
           />
         ))}

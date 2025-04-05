@@ -9,7 +9,6 @@ import { DarkSection } from '@/components/ui/DarkSection';
 import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
-import { TextLight } from '@/components/ui/Texts/TextLight';
 
 interface ChatsPageData {
   header: string;
@@ -40,7 +39,7 @@ export default function Chats(data: ChatsPageData) {
     <Page>
       <Header>{data.header}</Header>
       <DarkSection>
-        <TextLight>Для вступления тыкни на карточку</TextLight>
+        <Text>Для вступления тыкни на карточку</Text>
       </DarkSection>
       <Text className="self-start my-5">Чаты</Text>
       <div className="grid grid-cols-2 gap-3">

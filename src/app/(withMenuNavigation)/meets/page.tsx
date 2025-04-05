@@ -20,13 +20,16 @@ async function getMeetsPageData() {
         description,
         date,
         time,
-        type
+        type,
+        link
       },
       calendarButton,
+      calendarHref,
       regularActivities[] {
         title,
         description,
-        buttonText
+        buttonText,
+        buttonHref,
       },
       gallery[] {
         asset->{
