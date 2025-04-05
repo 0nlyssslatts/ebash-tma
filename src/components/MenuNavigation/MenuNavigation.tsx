@@ -14,7 +14,7 @@ export function MenuNavigation() {
 
   return (
     <div>
-      <div className="fixed rounded border-t sm:border-x bottom-0 left-1/2 flex h-[60px] w-full max-w-2xl z-110 -translate-x-1/2 items-center justify-between bg-secondary px-8 pb-[14px]">
+      <div className="fixed rounded border-t sm:border-x bottom-0 left-1/2 flex h-[60px] w-full max-w-2xl z-110 -translate-x-1/2 lg:-translate-x-[calc(50%+8px)] items-center justify-between bg-secondary px-8 pb-[14px]">
         {MENU_LINKS.map(({ Icon, link }, index) => (
           <Link href={link} key={index} onClick={() => haptic.impactOccurred('soft')}>
             <Icon color={match(link)(pathname) ? '#96FFCE' : '#fff'} size={30} />
