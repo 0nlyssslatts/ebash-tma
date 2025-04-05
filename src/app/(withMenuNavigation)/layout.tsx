@@ -9,7 +9,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
   return (
     <main
       style={{
-        marginBottom: `calc(${isMobile ? 80 : 60}px + var(--tg-safe-area-inset-bottom))`,
+        marginBottom: `calc(${isMobile ? 90 : 60}px + var(--tg-safe-area-inset-bottom))`,
       }}
       className={`max-w-[1024px] mx-auto w-full relative`}
     >
