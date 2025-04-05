@@ -59,7 +59,7 @@ export default function Meets({ data }: { data: MeetsPageData }) {
         ))}
       </div>
 
-      <div className="flex gap-4 p-4 flex-wrap w-full">
+      <div className="flex gap-2 flex-wrap w-full mt-5">
         {data.gallery?.map((image, index) => <CustomImage key={index} src={image.asset.url} description={image.alt} />)}
       </div>
     </Page>
