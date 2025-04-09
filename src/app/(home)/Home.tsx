@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
@@ -15,19 +14,6 @@ import { TextLight } from '@/components/ui/Texts/TextLight';
 import { HomePageData } from '@/lib/types/home';
 
 export default function Home({ data }: { data: HomePageData }) {
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
-      try {
-        tg.requestFullscreen();
-        tg.disableVerticalSwipes();
-      } catch (error) {
-        console.log(error);
-        tg.expand();
-      }
-    }
-  }, []);
-
   if (!data) {
     return <MainLoader />;
   }
