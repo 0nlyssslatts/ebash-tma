@@ -19,7 +19,7 @@ export function InfoCard({
   const router = useRouter();
 
   return (
-    <div className="flex items-stretch min-h-[200px] rounded-lg p-6 shadow">
+    <div className="flex items-stretch min-h-[200px] p-6 border-b border-t border-[#96FFCE]">
       <div className="flex items-center justify-center w-1/4 mr-2">
         <p className="text-4xl md:text-6xl font-blackout text-center">{title}</p>
       </div>
