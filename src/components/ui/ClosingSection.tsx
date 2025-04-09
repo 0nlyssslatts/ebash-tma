@@ -28,7 +28,7 @@ export function ClosingSection({ header, children }: ClosingSectionProps) {
         }}
       >
         <div>
-          <Text>{header}</Text>
+          <Text className='text-2xl'>{header}</Text>
         </div>
         <div className="flex flex-col justify-center">
           <ArrowIcon isOpen={isOpen} />

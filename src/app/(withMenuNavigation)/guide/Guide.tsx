@@ -10,7 +10,6 @@ import { MainLoader } from '@/components/ui/MainLoader';
 import { Section } from '@/components/ui/Section';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
-import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
 import { GuidePageData } from '@/lib/types/guide';
@@ -34,7 +33,7 @@ export default function Guide(data: GuidePageData) {
       <ClosingSection header="Наши ценности">
         {data.values.map(({ titleValue, descriptionValue }, index) => (
           <div key={index} className="mb-3">
-            <TextLight>{titleValue}</TextLight>
+            <Text>{titleValue}</Text>
             <TextLighter>{descriptionValue}</TextLighter>
           </div>
         ))}
@@ -44,7 +43,7 @@ export default function Guide(data: GuidePageData) {
         {data.mindsetREPKA.map(({ titleREPKA, descriptionREPKA, hrefREPKA }, index) => (
           <div key={index} className="mb-3">
             <div>
-              <TextLight>{titleREPKA}</TextLight>
+              <Text>{titleREPKA}</Text>
               <TextLighter>{descriptionREPKA}</TextLighter>
             </div>
             <div>
@@ -57,7 +56,7 @@ export default function Guide(data: GuidePageData) {
       <ClosingSection header="Словарь">
         {data.dictionary.map(({ term, meaning }, index) => (
           <div key={index} className="mb-3">
-            <TextLight>{term}</TextLight>
+            <Text>{term}</Text>
             <TextLighter>{meaning}</TextLighter>
           </div>
         ))}

@@ -20,7 +20,7 @@ export default function Help({ title, text, description, button, buttonHref }: H
       <DarkSection>
         <Text>{text}</Text>
         <TextLight>{description}</TextLight>
-        <SmallButton onClick={() => router.push(buttonHref)} className="mt-6">
+        <SmallButton onClick={() => router.push(buttonHref)} className="mt-6 bg-backgroundgreen hover:bg-backgroundgreen/15">
           {button}
         </SmallButton>
       </DarkSection>
