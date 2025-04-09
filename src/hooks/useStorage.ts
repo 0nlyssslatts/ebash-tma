@@ -36,27 +36,27 @@ const useStorage = () => {
       if (!tg?.CloudStorage) return;
 
       const exists = checks.includes(id);
-      if (exists) {
-        await new Promise((resolve, reject) => {
-          tg.CloudStorage.removeItem(id, (error: Error) => {
-            if (error) {
-              reject(error);
-            } else {
-              resolve(null);
-            }
-          });
-        });
-      } else {
-        await new Promise((resolve, reject) => {
-          tg.CloudStorage.setItem(id, value, (error: Error) => {
-            if (error) {
-              reject(error);
-            } else {
-              resolve(null);
-            }
-          });
-        });
-      }
+      const operation = exists ? 'remove' : 'add';
+
+      setChecks((prev) => (exists ? prev.filter((checkId) => checkId !== id) : [...prev, id]));
+
+      const storagePromise = new Promise<void>((resolve, reject) => {
+        const callback = (error: Error | null) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        };
+
+        if (operation === 'remove') {
+          tg.CloudStorage.removeItem(id, callback);
+        } else {
+          tg.CloudStorage.setItem(id, value, callback);
+        }
+      });
+
+      await storagePromise;
 
       await getCheck();
     } catch (error) {

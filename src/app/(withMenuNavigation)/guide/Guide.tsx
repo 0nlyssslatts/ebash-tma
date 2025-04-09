@@ -10,7 +10,6 @@ import { MainLoader } from '@/components/ui/MainLoader';
 import { Section } from '@/components/ui/Section';
 import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
-import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
 import { GuidePageData } from '@/lib/types/guide';
