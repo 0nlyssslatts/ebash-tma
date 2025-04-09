@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
-export function TextLighter({ children }: { children: ReactNode }) {
-  return <p className="font-montsserat text-sm font-extralight mb-1">{children}</p>;
+import { cn } from '@/lib/utils/utils';
+
+export function TextLighter({ children, className }: { children: ReactNode; className?: string }) {
+  return <p className={cn('font-montsserat text-sm font-extralight mb-1', className)}>{children}</p>;
 }

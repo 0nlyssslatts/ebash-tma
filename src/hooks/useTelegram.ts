@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from 'react';
 
-export function useTelegramWebApp() {
+export default function useTelegramWebApp() {
   // eslint-disable-next-line
   const [tg, setTg] = useState<any>(null);
 
