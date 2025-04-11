@@ -11,7 +11,6 @@ import { Button } from './Buttons/Button';
 import { SmallButton } from './Buttons/SmallButton';
 import { CheckMark } from './CheckMark';
 import CustomPortableText from './Texts/CustomPortableText';
-import { Text } from './Texts/Text';
 import { TextLight } from './Texts/TextLight';
 import { CheckProps } from '@/lib/types/guide';
 import { cn } from '@/lib/utils/utils';
