@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@portabletext/react": "^3.2.1",
+    "@portabletext/types": "^2.0.13",
     "@sanity/client": "^6.28.3",
     "@sanity/image-url": "^1.1.0",
     "@tailwindcss/postcss": "^4.0.14",

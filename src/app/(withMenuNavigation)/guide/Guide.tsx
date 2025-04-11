@@ -16,7 +16,7 @@ import { GuidePageData } from '@/lib/types/guide';
 
 const List = dynamic(() => import('@/components/ui/List').then((mod) => mod.List), {
   ssr: false,
-  loading: () => <div>Загрузка чек-листа...</div>,
+  loading: () => <MainLoader />,
 });
 
 export default function Guide(data: GuidePageData) {

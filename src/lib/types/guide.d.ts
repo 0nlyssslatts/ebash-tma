@@ -13,7 +13,18 @@ export interface GuidePageData {
     term: string;
     meaning: string;
   }[];
-  checklist: {
-    check: string;
+  checklist: CheckProps[];
+}
+
+export interface CheckProps {
+  check: string;
+  description: PortableTextBlock<PortableTextMarkDefinition, ArbitraryTypedObject | PortableTextSpan, string, string>[];
+  examples?: {
+    exampleButton: string;
+    exampleHref: string;
   }[];
+  button: {
+    text: string;
+    href: string;
+  };
 }

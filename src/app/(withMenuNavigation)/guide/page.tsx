@@ -17,7 +17,12 @@ async function getGuidePageData() {
     "values": values[] { titleValue, descriptionValue },
     "mindsetREPKA": mindsetREPKA[] { titleREPKA, descriptionREPKA, hrefREPKA },
     "dictionary": dictionary[] { term, meaning },
-    "checklist": checklist[] { check },
+    "checklist": checklist[] { 
+      check, 
+      description,
+      examples[] { exampleButton, exampleHref },
+      button { text, href }
+    },
   }`);
 }
 

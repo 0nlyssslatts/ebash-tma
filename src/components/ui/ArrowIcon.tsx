@@ -1,8 +1,10 @@
-export function ArrowIcon({ isOpen }: { isOpen: boolean }) {
+import { cn } from '@/lib/utils/utils';
+
+export function ArrowIcon({ isOpen, className }: { isOpen: boolean; className?: string }) {
   return (
     <>
       <svg
-        className={`transform ${isOpen ? 'rotate-180' : ''}`}
+        className={cn(`transform ${isOpen ? 'rotate-180' : ''}`, className)}
         width="17"
         height="5"
         viewBox="0 0 17 5"
