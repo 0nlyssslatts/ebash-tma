@@ -1,7 +1,6 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
 import { useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
@@ -69,7 +68,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
           <TextLight className={cn('text-base text-white w-[90%]', isChecked ? 'text-textgreen' : '')}>
             {item.check}
           </TextLight>
-          <ArrowIcon isOpen={isOpen} className={cn('absolute right-3 top-6', !isChecked && 'none')} />
+          <ArrowIcon isOpen={isOpen} className={cn('absolute right-3 top-6', isChecked && 'hidden')} />
         </div>
         <AnimatePresence>
           {isOpen && !isChecked && (
@@ -97,18 +96,18 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
                 {item.examples && (
                   <div className="flex flex-row w-full gap-1 mb-1 mt-1">
                     {item.examples.map((example, index) => (
-                      <Link href={example.exampleHref} key={index} className="flex-1">
-                        <SmallButton className="bg-[#282828] w-full text-sm text-white">
-                          {example.exampleButton}
-                        </SmallButton>
-                      </Link>
+                      <SmallButton
+                        key={index}
+                        onClick={() => (window.location.href = example.exampleHref)}
+                        className="bg-[#282828] w-full text-sm text-white"
+                      >
+                        {example.exampleButton}
+                      </SmallButton>
                     ))}
                   </div>
                 )}
                 {item.button.text && (
-                  <Link href={item.button.href}>
-                    <Button>{item.button.text}</Button>
-                  </Link>
+                  <Button onClick={() => (window.location.href = item.button.href)}>{item.button.text}</Button>
                 )}
               </div>
             </motion.div>

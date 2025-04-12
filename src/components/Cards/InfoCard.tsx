@@ -1,7 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-
 import { SmallButton } from '../ui/Buttons/SmallButton';
 import { TextLight } from '../ui/Texts/TextLight';
 
@@ -16,8 +14,6 @@ export function InfoCard({
   href: string;
   buttonText: string;
 }) {
-  const router = useRouter();
-
   return (
     <div className="flex items-stretch min-h-[200px] p-6 border-b border-t border-[#96FFCE]">
       <div className="flex items-center justify-center w-1/4 mr-2">
@@ -28,7 +24,7 @@ export function InfoCard({
 
       <div className="flex flex-col justify-center flex-1 gap-4">
         <TextLight>{text}</TextLight>
-        <SmallButton onClick={() => router.push(href)}>{buttonText}</SmallButton>
+        <SmallButton onClick={() => (window.location.href = href)}>{buttonText}</SmallButton>
       </div>
     </div>
   );
