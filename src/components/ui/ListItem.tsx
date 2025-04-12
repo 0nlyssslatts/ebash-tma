@@ -21,10 +21,9 @@ interface ListItemProps {
   isChecked: boolean;
 }
 
-export function ListItem({ item, handleStorage, isChecked = true }: ListItemProps) {
+export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  isChecked = true;
 
   const handleCheckboxChange = () => {
     handleStorage();
