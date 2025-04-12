@@ -1,5 +1,5 @@
 import { PortableText } from '@portabletext/react';
-import { PortableTextBlock } from '@portabletext/types';
+import { PortableTextBlock } from '@portabletext/react';
 
 import { Text } from './Text';
 import { TextLight } from './TextLight';

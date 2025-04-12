@@ -5,8 +5,8 @@ import { ReactNode, useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
 
-import { ArrowIcon } from './ArrowIcon';
 import { DarkSection } from './DarkSection';
+import { ArrowIcon } from './Icons/ArrowIcon';
 import { Text } from './Texts/Text';
 
 interface ClosingSectionProps {
@@ -28,7 +28,7 @@ export function ClosingSection({ header, children }: ClosingSectionProps) {
         }}
       >
         <div>
-          <Text className='text-2xl'>{header}</Text>
+          <Text className="text-2xl">{header}</Text>
         </div>
         <div className="flex flex-col justify-center">
           <ArrowIcon isOpen={isOpen} />

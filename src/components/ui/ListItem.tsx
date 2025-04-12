@@ -6,10 +6,10 @@ import { useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
 
-import { ArrowIcon } from './ArrowIcon';
 import { Button } from './Buttons/Button';
 import { SmallButton } from './Buttons/SmallButton';
-import { CheckMark } from './CheckMark';
+import { ArrowIcon } from './Icons/ArrowIcon';
+import { CheckMark } from './Icons/CheckMark';
 import CustomPortableText from './Texts/CustomPortableText';
 import { TextLight } from './Texts/TextLight';
 import { CheckProps } from '@/lib/types/guide';
@@ -69,7 +69,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
           <TextLight className={cn('text-base text-white w-[90%]', isChecked ? 'text-textgreen' : '')}>
             {item.check}
           </TextLight>
-          <ArrowIcon isOpen={isOpen} className="absolute right-3 top-6" />
+          <ArrowIcon isOpen={isOpen} className={cn('absolute right-3 top-6', !isChecked && 'none')} />
         </div>
         <AnimatePresence>
           {isOpen && !isChecked && (
