@@ -21,9 +21,10 @@ interface ListItemProps {
   isChecked: boolean;
 }
 
-export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
+export function ListItem({ item, handleStorage, isChecked = true }: ListItemProps) {
   const haptic = useHaptic();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  isChecked = true;
 
   const handleCheckboxChange = () => {
     handleStorage();
@@ -42,7 +43,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
           type="checkbox"
           className={cn(
             'w-full h-full m-0 rounded-lg appearance-none border focus:outline-none focus:ring-1 focus:ring-green-100',
-            isChecked ? 'checked:bg-black checked:border-textgreen' : ''
+            isChecked ? 'bg-black border-textgreen' : ''
           )}
           checked={isChecked}
           readOnly
@@ -53,7 +54,8 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
 
       <div
         className={cn(
-          'w-full flex flex-col hover:cursor-pointer rounded font-medium transition-all ml-14 border rounded-lg'
+          'w-full flex flex-col hover:cursor-pointer rounded font-medium transition-all ml-14 border rounded-lg',
+          isChecked ? 'bg-black border-textgreen' : ''
         )}
       >
         <div
@@ -62,7 +64,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
           }}
           className={cn(
             'w-full flex flex-row text-textgreen px-3 py-3 rounded font-medium rounded-lg relative',
-            isChecked ? 'bg-black line-through border-textgreen' : ''
+            isChecked ? 'line-through' : ''
           )}
         >
           <TextLight className={cn('text-base text-white w-[90%]', isChecked ? 'text-textgreen' : '')}>
