@@ -37,7 +37,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
       whileTap={{ scale: 0.98 }}
       className="flex flex-row items-center relative select-none"
     >
-      <div onClick={handleCheckboxChange} className="absolute top-[1px] w-[52px] h-[52px] mr-2">
+      <motion.div onClick={handleCheckboxChange} className="absolute top-[1px] w-[52px] h-[52px] mr-2">
         <input
           type="checkbox"
           className={cn(
@@ -49,12 +49,12 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
           onClick={(e) => e.preventDefault()}
         />
         <CheckMark isChecked={isChecked} className="absolute left-[14px] top-[16px]" />
-      </div>
+      </motion.div>
 
       <div
         className={cn(
           'w-full flex flex-col hover:cursor-pointer rounded font-medium transition-all ml-14 border rounded-lg',
-          isChecked ? 'bg-black border-textgreen' : ''
+          isChecked && 'bg-black border-textgreen'
         )}
       >
         <div
@@ -88,27 +88,29 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
                 duration: 0.3,
                 opacity: { duration: 0.15 },
               }}
-              className="border-t w-full px-3 py-3 overflow-hidden"
+              className="border-t w-full overflow-hidden"
               style={{ originY: 0 }}
             >
-              {item.description && <CustomPortableText content={item.description}></CustomPortableText>}
+              <div className="px-3 py-3">
+                {item.description && <CustomPortableText content={item.description}></CustomPortableText>}
 
-              {item.examples && (
-                <div className="flex flex-row w-full gap-1 mb-1 mt-1">
-                  {item.examples.map((example, index) => (
-                    <Link href={example.exampleHref} key={index} className="flex-1">
-                      <SmallButton className="bg-[#282828] w-full text-sm text-white">
-                        {example.exampleButton}
-                      </SmallButton>
-                    </Link>
-                  ))}
-                </div>
-              )}
-              {item.button.text && (
-                <Link href={item.button.href}>
-                  <Button>{item.button.text}</Button>
-                </Link>
-              )}
+                {item.examples && (
+                  <div className="flex flex-row w-full gap-1 mb-1 mt-1">
+                    {item.examples.map((example, index) => (
+                      <Link href={example.exampleHref} key={index} className="flex-1">
+                        <SmallButton className="bg-[#282828] w-full text-sm text-white">
+                          {example.exampleButton}
+                        </SmallButton>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+                {item.button.text && (
+                  <Link href={item.button.href}>
+                    <Button>{item.button.text}</Button>
+                  </Link>
+                )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
