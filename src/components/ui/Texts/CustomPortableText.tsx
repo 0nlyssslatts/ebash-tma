@@ -18,13 +18,16 @@ export default function CustomPortableText({ content }: Props) {
         components={{
           block: {
             normal: ({ children }) => <TextLighter>{children}</TextLighter>,
-            h1: ({ children }) => <Header>{children}</Header>,
-            h2: ({ children }) => <Text>{children}</Text>,
-            h3: ({ children }) => <TextLight>{children}</TextLight>,
+            h1: ({ children }) => <Text>{children}</Text>,
+            h2: ({ children }) => <TextLight>{children}</TextLight>,
           },
           list: {
-            bullet: ({ children }) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
-            number: ({ children }) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
+            bullet: ({ children }) => (
+              <ul className="list-disc pl-5 mb-4 font-montsserat text-sm font-extralight">{children}</ul>
+            ),
+            number: ({ children }) => (
+              <ol className="list-decimal pl-5 mb-4 font-montsserat text-sm font-extralight">{children}</ol>
+            ),
           },
           marks: {
             strong: ({ children }) => <strong>{children}</strong>,

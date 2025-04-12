@@ -32,11 +32,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   };
 
   return (
-    <motion.li
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="flex flex-row items-center relative select-none"
-    >
+    <motion.li whileHover={{ scale: 1.02 }} className="flex flex-row items-center relative select-none">
       <div onClick={handleCheckboxChange} className="absolute top-[1px] w-[52px] h-[52px] mr-2">
         <input
           type="checkbox"
