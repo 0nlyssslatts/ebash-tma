@@ -1,7 +1,6 @@
 import { PortableText } from '@portabletext/react';
 import { PortableTextBlock } from '@portabletext/types';
 
-import { Header } from './Header';
 import { Text } from './Text';
 import { TextLight } from './TextLight';
 import { TextLighter } from './TextLighter';
