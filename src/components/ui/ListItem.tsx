@@ -32,7 +32,11 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   };
 
   return (
-    <motion.li whileHover={{ scale: 1.02 }} className="flex flex-row items-center relative select-none">
+    <motion.li
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      className="flex flex-row items-center relative select-none"
+    >
       <div onClick={handleCheckboxChange} className="absolute top-[1px] w-[52px] h-[52px] mr-2">
         <input
           type="checkbox"
@@ -61,7 +65,9 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
             isChecked ? 'bg-black line-through border-textgreen' : ''
           )}
         >
-          <TextLight className={cn('text-base text-white', isChecked ? 'text-textgreen' : '')}>{item.check}</TextLight>
+          <TextLight className={cn('text-base text-white w-[90%]', isChecked ? 'text-textgreen' : '')}>
+            {item.check}
+          </TextLight>
           <ArrowIcon isOpen={isOpen} className="absolute right-3 top-6" />
         </div>
         <AnimatePresence>
@@ -69,9 +75,20 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="border-t w-full px-3 py-3"
+              exit={{
+                opacity: 0,
+                height: 0,
+                transition: {
+                  duration: 0.3,
+                  opacity: { duration: 0.2 },
+                },
+              }}
+              transition={{
+                duration: 0.3,
+                opacity: { duration: 0.15 },
+              }}
+              className="border-t w-full px-3 py-3 overflow-hidden"
+              style={{ originY: 0 }}
             >
               {item.description && <CustomPortableText content={item.description}></CustomPortableText>}
 
