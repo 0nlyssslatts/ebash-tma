@@ -8,9 +8,13 @@ import { Header } from '@/components/ui/Texts/Header';
 import { TextLight } from '@/components/ui/Texts/TextLight';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
+import { useLink } from '@/hooks/useLink';
+
 import { BonusPageProps } from '@/lib/types/bonus';
 
 export default function Bonus(data: BonusPageProps) {
+  const openLink = useLink();
+
   if (!data) {
     return <MainLoader />;
   }
@@ -22,7 +26,7 @@ export default function Bonus(data: BonusPageProps) {
         <ClosingSection header={title} key={index}>
           <TextLight>{description}</TextLight>
           <TextLighter>{buttonDescription}</TextLighter>
-          <Button onClick={() => (window.location.href = buttonHref)}>{buttonText}</Button>
+          <Button onClick={() => openLink(buttonHref)}>{buttonText}</Button>
         </ClosingSection>
       ))}
     </Page>
