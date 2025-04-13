@@ -11,6 +11,8 @@ import { Header } from '@/components/ui/Texts/Header';
 import { Text } from '@/components/ui/Texts/Text';
 import { TextLighter } from '@/components/ui/Texts/TextLighter';
 
+import { useLink } from '@/hooks/useLink';
+
 import { GuidePageData } from '@/lib/types/guide';
 
 const List = dynamic(() => import('@/components/ui/List').then((mod) => mod.List), {
@@ -19,6 +21,7 @@ const List = dynamic(() => import('@/components/ui/List').then((mod) => mod.List
 });
 
 export default function Guide(data: GuidePageData) {
+  const openLink = useLink();
   if (!data) {
     return <MainLoader />;
   }
@@ -44,7 +47,7 @@ export default function Guide(data: GuidePageData) {
               <TextLighter>{descriptionREPKA}</TextLighter>
             </div>
             <div>
-              <Button onClick={() => (window.location.href = hrefREPKA)}>Смотреть вебинар</Button>
+              <Button onClick={() => openLink(hrefREPKA)}>Смотреть вебинар</Button>
             </div>
           </div>
         ))}
