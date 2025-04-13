@@ -1,24 +1,33 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
 
+import { Button } from './Buttons/Button';
+import { SmallButton } from './Buttons/SmallButton';
+import { ArrowIcon } from './Icons/ArrowIcon';
+import { CheckMark } from './Icons/CheckMark';
+import CustomPortableText from './Texts/CustomPortableText';
 import { TextLight } from './Texts/TextLight';
+import { CheckProps } from '@/lib/types/guide';
 import { cn } from '@/lib/utils/utils';
 
 interface ListItemProps {
-  item: string;
+  item: CheckProps;
   handleStorage: () => void;
   isChecked: boolean;
 }
 
 export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleCheckboxChange = () => {
     handleStorage();
     haptic.notificationOccurred('success');
+    setIsOpen(false);
   };
 
   return (
@@ -26,46 +35,84 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className="flex flex-row items-center relative select-none"
-      onClick={handleCheckboxChange}
     >
-      <div className="relative w-12 h-11 mr-2">
+      <motion.div onClick={handleCheckboxChange} className="absolute top-[1px] w-[52px] h-[52px] mr-2">
         <input
           type="checkbox"
-          className="w-full h-full m-0 rounded-lg appearance-none border 
-         checked:bg-black checked:border-textgreen
-         focus:outline-none focus:ring-1 focus:ring-green-100
-         "
+          className={cn(
+            'w-full h-full m-0 rounded-lg appearance-none border focus:outline-none focus:ring-1 focus:ring-green-100',
+            isChecked ? 'bg-black border-textgreen' : ''
+          )}
           checked={isChecked}
           readOnly
           onClick={(e) => e.preventDefault()}
         />
-        {isChecked && (
-          <svg
-            className="absolute left-[9px] top-[14px]"
-            width="24"
-            height="24"
-            viewBox="0 0 31 31"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M29.6667 1L9.95833 20.7083L1 11.75"
-              stroke="#96FFCE"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        )}
-      </div>
+        <CheckMark isChecked={isChecked} className="absolute left-[14px] top-[16px]" />
+      </motion.div>
 
       <div
         className={cn(
-          'w-full flex flex-row gap-5 hover:cursor-pointer text-textgreen px-3 py-2 rounded font-medium transition-all relative border rounded-lg',
-          isChecked ? 'bg-black line-through border-textgreen' : ''
+          'w-full flex flex-col hover:cursor-pointer rounded font-medium transition-all ml-14 border rounded-lg',
+          isChecked && 'bg-black border-textgreen'
         )}
       >
-        <TextLight className={cn('text-base text-white', isChecked ? 'text-textgreen' : '')}>{item}</TextLight>
+        <div
+          onClick={() => {
+            if (!isChecked) setIsOpen((prev) => !prev);
+          }}
+          className={cn(
+            'w-full flex flex-row text-textgreen px-3 py-3 rounded font-medium rounded-lg relative',
+            isChecked ? 'line-through' : ''
+          )}
+        >
+          <TextLight className={cn('text-base text-white w-[90%]', isChecked ? 'text-textgreen' : '')}>
+            {item.check}
+          </TextLight>
+          <ArrowIcon isOpen={isOpen} className={cn('absolute right-3 top-6', isChecked && 'hidden')} />
+        </div>
+        <AnimatePresence>
+          {isOpen && !isChecked && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{
+                opacity: 0,
+                height: 0,
+                transition: {
+                  duration: 0.3,
+                  opacity: { duration: 0.2 },
+                },
+              }}
+              transition={{
+                duration: 0.3,
+                opacity: { duration: 0.15 },
+              }}
+              className="border-t w-full overflow-hidden"
+              style={{ originY: 0 }}
+            >
+              <div className="px-3 py-3">
+                {item.description && <CustomPortableText content={item.description}></CustomPortableText>}
+
+                {item.examples && (
+                  <div className="flex flex-row w-full gap-1 mb-1 mt-1">
+                    {item.examples.map((example, index) => (
+                      <SmallButton
+                        key={index}
+                        onClick={() => (window.location.href = example.exampleHref)}
+                        className="bg-[#282828] w-full text-sm text-white"
+                      >
+                        {example.exampleButton}
+                      </SmallButton>
+                    ))}
+                  </div>
+                )}
+                {item.button.text && (
+                  <Button onClick={() => (window.location.href = item.button.href)}>{item.button.text}</Button>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.li>
   );

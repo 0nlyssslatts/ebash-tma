@@ -10,11 +10,12 @@ import { CustomImage } from '@/components/ui/CustomImage';
 import { MainLoader } from '@/components/ui/MainLoader';
 import { Header } from '@/components/ui/Texts/Header';
 
+import { useLink } from '@/hooks/useLink';
+
 import { MeetsPageData } from '@/lib/types/meets';
-import { useRouter } from 'next/navigation';
 
 export default function Meets({ data }: { data: MeetsPageData }) {
-  const router = useRouter()
+  const openLink = useLink();
 
   if (!data) {
     return <MainLoader />;
@@ -43,7 +44,9 @@ export default function Meets({ data }: { data: MeetsPageData }) {
         ))}
       </div>
 
-      <SmallButton onClick={() => router.push(data.calendarHref)} className="mt-6 py-6">{data.calendarButton}</SmallButton>
+      <SmallButton onClick={() => openLink(data.calendarHref)} className="mt-6 py-6">
+        {data.calendarButton}
+      </SmallButton>
 
       <div className="flex justify-between items-center w-full mt-6">
         <p className="text-lg">Регулярные активности</p>

@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
 
 import { Page } from '@/components/Page';
 import { Button } from '@/components/ui/Buttons/Button';
@@ -16,12 +15,10 @@ import { GuidePageData } from '@/lib/types/guide';
 
 const List = dynamic(() => import('@/components/ui/List').then((mod) => mod.List), {
   ssr: false,
-  loading: () => <div>Загрузка чек-листа...</div>,
+  loading: () => <MainLoader />,
 });
 
 export default function Guide(data: GuidePageData) {
-  const router = useRouter();
-
   if (!data) {
     return <MainLoader />;
   }
@@ -47,7 +44,7 @@ export default function Guide(data: GuidePageData) {
               <TextLighter>{descriptionREPKA}</TextLighter>
             </div>
             <div>
-              <Button onClick={() => router.push(hrefREPKA)}>Смотреть вебинар</Button>
+              <Button onClick={() => (window.location.href = hrefREPKA)}>Смотреть вебинар</Button>
             </div>
           </div>
         ))}

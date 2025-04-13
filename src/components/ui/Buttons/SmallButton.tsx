@@ -1,8 +1,18 @@
 import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils/utils';
+
 import { useHaptic } from '@/hooks/useHaptic';
 
-export function SmallButton({ children, onClick, className }: { children: string; onClick?: () => void; className?: string }) {
+import { cn } from '@/lib/utils/utils';
+
+export function SmallButton({
+  children,
+  onClick,
+  className,
+}: {
+  children: string;
+  onClick?: () => void;
+  className?: string;
+}) {
   const haptic = useHaptic();
 
   const handleClick = () => {
@@ -17,7 +27,7 @@ export function SmallButton({ children, onClick, className }: { children: string
       whileTap={{ scale: 0.98 }}
       className={cn(
         'w-full hover:cursor-pointer hover:bg-backgroundgreen bg-secondary text-textgreen py-2 rounded-xl font-medium transition-all relative',
-        className,
+        className
       )}
     >
       {children}
