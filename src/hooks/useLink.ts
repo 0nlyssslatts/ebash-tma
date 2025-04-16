@@ -9,7 +9,7 @@ export const useLink = () => {
     setIsTelegramWebView(!!window.Telegram?.WebApp?.openLink);
   }, []);
 
-  const openLink = (href: string, options = { try_instant_view: false }) => {
+  const openLink = (href: string, options = { try_instant_view: false, try: 'chrome' }) => {
     if (isTelegramWebView && window.Telegram?.WebApp?.openLink) {
       window.Telegram.WebApp.openLink(href, options);
     } else {
