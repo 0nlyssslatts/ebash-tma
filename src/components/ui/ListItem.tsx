@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 import { useHaptic } from '@/hooks/useHaptic';
+import { useLink } from '@/hooks/useLink';
 
 import { Button } from './Buttons/Button';
 import { SmallButton } from './Buttons/SmallButton';
@@ -22,6 +23,7 @@ interface ListItemProps {
 
 export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
   const haptic = useHaptic();
+  const openLink = useLink();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleCheckboxChange = () => {
@@ -106,9 +108,7 @@ export function ListItem({ item, handleStorage, isChecked }: ListItemProps) {
                     ))}
                   </div>
                 )}
-                {item.button.text && (
-                  <Button onClick={() => (window.location.href = item.button.href)}>{item.button.text}</Button>
-                )}
+                {item.button.text && <Button onClick={() => openLink(item.button.href)}>{item.button.text}</Button>}
               </div>
             </motion.div>
           )}
