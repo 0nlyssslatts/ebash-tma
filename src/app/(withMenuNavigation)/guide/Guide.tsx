@@ -62,6 +62,15 @@ export default function Guide(data: GuidePageData) {
         ))}
       </ClosingSection>
 
+      <ClosingSection header="Наши лиды">
+        {data.leads.map(({ lead, resps }, index) => (
+          <div key={index} className="mb-3">
+            <Text>{lead}</Text>
+            <TextLighter>{resps}</TextLighter>
+          </div>
+        ))}
+      </ClosingSection>
+
       <Section className="mt-7">
         <Text>Чек-лист EБАШера</Text>
         <List listArray={data.checklist} />

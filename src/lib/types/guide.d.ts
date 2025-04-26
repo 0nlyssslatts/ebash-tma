@@ -13,6 +13,10 @@ export interface GuidePageData {
     term: string;
     meaning: string;
   }[];
+  leads: {
+    lead: string;
+    resps: string;
+  }[];
   checklist: CheckProps[];
 }
 

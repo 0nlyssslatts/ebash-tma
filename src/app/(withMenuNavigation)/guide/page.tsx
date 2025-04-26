@@ -17,6 +17,7 @@ async function getGuidePageData() {
     "values": values[] { titleValue, descriptionValue },
     "mindsetREPKA": mindsetREPKA[] { titleREPKA, descriptionREPKA, hrefREPKA },
     "dictionary": dictionary[] { term, meaning },
+    "leads": leads[] { lead, resps },
     "checklist": checklist[] { 
       check, 
       description,
