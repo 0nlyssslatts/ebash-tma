@@ -21,7 +21,7 @@ export function MeetCard({
 
   return (
     <div
-      className="flex flex-col gap-2 justify-center items-center rounded-lg border cursor-pointer py-3 px-2 w-30"
+      className="flex flex-col gap-2 rounded-lg border cursor-pointer py-3 px-2 w-30"
       onClick={() => router.push(href)}
     >
       <h3 className="text-lg self-start">{title}</h3>

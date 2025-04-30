@@ -10,14 +10,17 @@ export const metadata: Metadata = {
 };
 
 export const revalidate = 600;
-
 async function getGuidePageData() {
   return await client.fetch(groq`*[_type == "guidePage"][0]{
     header, 
     "values": values[] { titleValue, descriptionValue },
     "mindsetREPKA": mindsetREPKA[] { titleREPKA, descriptionREPKA, hrefREPKA },
     "dictionary": dictionary[] { term, meaning },
-    "leads": leads[] { lead, resps },
+    "leads": leads[] { 
+      leadName, 
+      leadDescription, 
+      leadHref 
+    },
     "checklist": checklist[] { 
       check, 
       description,
