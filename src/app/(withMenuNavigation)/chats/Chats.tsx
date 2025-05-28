@@ -52,10 +52,6 @@ export default function Chats(data: ChatsPageData) {
     }, 400);
   };
 
-  if (!data) {
-    return <MainLoader />;
-  }
-
   useEffect(() => {
     return () => {
       if (timerRef.current) {
@@ -63,6 +59,10 @@ export default function Chats(data: ChatsPageData) {
       }
     };
   }, []);
+
+  if (!data) {
+    return <MainLoader />;
+  }
 
   return (
     <Page>
