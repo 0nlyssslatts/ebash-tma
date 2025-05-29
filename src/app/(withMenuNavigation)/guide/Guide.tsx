@@ -63,14 +63,14 @@ export default function Guide(data: GuidePageData) {
       </ClosingSection>
 
       <ClosingSection header="Наши лиды">
-        {data.leads.map(({ leadName, leadDescription, leadHref }, index) => (
+        {data.leads.map(({ leadName, leadDescription, leadButton, leadHref }, index) => (
           <div key={index} className="mb-3">
             <div>
               <Text>{leadName}</Text>
               <TextLighter>{leadDescription}</TextLighter>
             </div>
             <div>
-              <Button onClick={() => openLink(leadHref)}>Смотреть вебинар</Button>
+              <Button onClick={() => openLink(leadHref)}>{leadButton}</Button>
             </div>
           </div>
         ))}

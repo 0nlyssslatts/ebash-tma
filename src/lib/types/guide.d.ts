@@ -16,6 +16,7 @@ export interface GuidePageData {
   leads: {
     leadName: string;
     leadDescription: string;
+    leadButton: string;
     leadHref: string;
   }[];
   checklist: CheckProps[];

@@ -19,6 +19,7 @@ async function getGuidePageData() {
     "leads": leads[] { 
       leadName, 
       leadDescription, 
+      leadButton,
       leadHref 
     },
     "checklist": checklist[] { 
