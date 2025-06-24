@@ -27,8 +27,6 @@ export default function Chats(data: ChatsPageData) {
     setShowPopup({ title, href, isOpen: true });
   };
 
-  console.log(data.chats);
-
   const filterChats = (searchedText: string) => {
     if (searchedText.trim() === '') {
       setChats(data.chats);
@@ -37,13 +35,13 @@ export default function Chats(data: ChatsPageData) {
 
     const filteredChats = data?.chats.filter((chat) => {
       return (
-        chat.keywords &&
-        chat.keywords.some((key: string) => {
-          return key.toLowerCase().includes(searchedText.toLowerCase());
-        })
+        (chat.keywords &&
+          chat.keywords.some((key: string) => {
+            return key.toLowerCase().includes(searchedText.toLowerCase());
+          })) ||
+        chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
+        chat.description.toLowerCase().includes(searchedText.toLowerCase())
       );
-      // chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
-      // chat.description.toLowerCase().includes(searchedText.toLowerCase())
     });
     setChats(filteredChats);
   };
