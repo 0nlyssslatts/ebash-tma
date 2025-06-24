@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-// Импорт Framer Motion
-
 import { ChatCard } from '@/components/Cards/ChatCard';
 import { ChatPopup } from '@/components/Cards/ChatPopup';
 import { Page } from '@/components/Page';
@@ -31,10 +29,11 @@ export default function Chats(data: ChatsPageData) {
 
   const filterChats = (searchedText: string) => {
     const filteredChats = data?.chats.filter((chat) => {
-      return (
-        chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
-        chat.description.toLowerCase().includes(searchedText.toLowerCase())
-      );
+      return chat.keywords.some((key: string) => {
+        return key.toLowerCase().includes(searchedText.toLowerCase());
+      });
+      // chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
+      // chat.description.toLowerCase().includes(searchedText.toLowerCase())
     });
 
     setChats(filteredChats);
@@ -72,7 +71,7 @@ export default function Chats(data: ChatsPageData) {
 
       {chats.length !== 0 ? (
         <motion.div
-          key={chats.length} // Триггер анимации при изменении данных
+          key={chats.length}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}

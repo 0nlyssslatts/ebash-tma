@@ -14,7 +14,7 @@ export const revalidate = 600;
 async function getChatsPageData() {
   return await client.fetch(groq`*[_type == "chatsPage"][0]{
     header, 
-    "chats": chats[] { title, description, color, href }
+    "chats": chats[] { title, description, keywords, color, href }
   }`);
 }
 
