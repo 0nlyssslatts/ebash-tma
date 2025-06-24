@@ -21,7 +21,7 @@ interface CardPopupProps {
 
 export default function Chats(data: ChatsPageData) {
   const [showPopup, setShowPopup] = useState<CardPopupProps>({ title: '', href: '', isOpen: false });
-  const [chats, setChats] = useState(data?.chats);
+  const [chats, setChats] = useState(data.chats);
   const timerRef = useRef<number | null>(null);
   const handlePopup = ({ title, href }: CardPopupProps) => {
     setShowPopup({ title, href, isOpen: true });
@@ -30,6 +30,11 @@ export default function Chats(data: ChatsPageData) {
   console.log(data.chats);
 
   const filterChats = (searchedText: string) => {
+    if (searchedText.trim() === '') {
+      setChats(data.chats);
+      return;
+    }
+
     const filteredChats = data?.chats.filter((chat) => {
       return (
         chat.keywords &&
@@ -40,7 +45,6 @@ export default function Chats(data: ChatsPageData) {
       // chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
       // chat.description.toLowerCase().includes(searchedText.toLowerCase())
     });
-
     setChats(filteredChats);
   };
 
