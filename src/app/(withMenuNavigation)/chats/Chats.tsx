@@ -27,6 +27,8 @@ export default function Chats(data: ChatsPageData) {
     setShowPopup({ title, href, isOpen: true });
   };
 
+  console.log(data.chats);
+
   const filterChats = (searchedText: string) => {
     const filteredChats = data?.chats.filter((chat) => {
       return chat.keywords.some((key: string) => {
