@@ -31,9 +31,12 @@ export default function Chats(data: ChatsPageData) {
 
   const filterChats = (searchedText: string) => {
     const filteredChats = data?.chats.filter((chat) => {
-      return chat.keywords.some((key: string) => {
-        return key.toLowerCase().includes(searchedText.toLowerCase());
-      });
+      return (
+        chat.keywords &&
+        chat.keywords.some((key: string) => {
+          return key.toLowerCase().includes(searchedText.toLowerCase());
+        })
+      );
       // chat.title.toLowerCase().includes(searchedText.toLowerCase()) ||
       // chat.description.toLowerCase().includes(searchedText.toLowerCase())
     });
