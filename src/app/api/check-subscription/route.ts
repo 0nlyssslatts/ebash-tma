@@ -17,9 +17,9 @@ export async function POST(req: Request) {
       })
     );
 
-    return NextResponse.json({ isSubscribed: true });
+    return NextResponse.json({ isSubscribed: results.some(Boolean) });
   } catch (error) {
     console.error('Subscription check failed:', error);
-    return NextResponse.json({ isSubscribed: true });
+    return NextResponse.json({ error: 'Subscription check failed' }, { status: 500 });
   }
 }
